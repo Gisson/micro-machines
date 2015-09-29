@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(double near, double)
+Camera::Camera(double near, double far) :Entity()
 {
 }
 

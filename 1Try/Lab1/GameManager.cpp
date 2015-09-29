@@ -24,9 +24,10 @@ void Game_manager::onTimer()
 
 void Game_manager::idle()
 {
+	
 }
 
-void Game_manager::update()
+void Game_manager::update(double delta)
 {
 }
 

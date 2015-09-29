@@ -1,7 +1,7 @@
 
 #ifndef __ORTHOGONALCAMERA_H__
 #define __ORTHOGONALCAMERA_H__
-#include "Camera.h";
+#include "Camera.h"
 #include "Entity.h"
 
 class OrthogonalCamera :Camera {

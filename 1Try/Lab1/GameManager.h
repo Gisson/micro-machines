@@ -13,7 +13,7 @@
 		void keyPressed();
 		void onTimer();
 		void idle();
-		void update();
+		void update(double delta);
 		void init();
 	};
 

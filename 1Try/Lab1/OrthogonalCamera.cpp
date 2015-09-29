@@ -12,9 +12,10 @@ void OrthogonalCamera::computeVisualizationMatrix()
 {
 }
 
-OrthogonalCamera::OrthogonalCamera(double fovy, double aspect, double near, double)
+OrthogonalCamera::OrthogonalCamera(double fovy, double aspect, double near, double far) :Camera(near,far)
 {
 }
+
 
 OrthogonalCamera::~OrthogonalCamera()
 {

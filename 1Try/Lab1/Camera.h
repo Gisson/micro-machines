@@ -1,6 +1,6 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
-#include "Entity.h";
+#include "Entity.h"
 
 class Camera : Entity {
 

@@ -1,7 +1,7 @@
 
 #ifndef __PERSPECTIVECAMERA_H__
 #define __PERSPECTIVECAMERA_H__
-#include "Camera.h";
+#include "Camera.h"
 #include "Entity.h"
 
 class PerspectiveCamera :Camera {

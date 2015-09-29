@@ -1,5 +1,13 @@
 #include "PerspectiveCamera.h"
 
+
+PerspectiveCamera::PerspectiveCamera(double fovy, double aspect, double near, double far) :Camera (near,far)
+{
+	
+}
+
+
+
 void PerspectiveCamera::update()
 {
 }
@@ -12,9 +20,6 @@ void PerspectiveCamera::computeVisualizationMatrix()
 {
 }
 
-PerspectiveCamera::PerspectiveCamera(double fovy, double aspect, double near, double)
-{
-}
 
 PerspectiveCamera::~PerspectiveCamera()
 {
