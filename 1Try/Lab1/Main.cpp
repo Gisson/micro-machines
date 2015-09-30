@@ -2,52 +2,25 @@
 #include "GameManager.h"
 
 
-void reshapeWindow(GLsizei w, GLsizei h) {
-	glPushMatrix();
-	glViewport(0, 0, w, h);
-	GLfloat ratio = GLfloat(w) / GLfloat(h);
-	
-	
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	if (w > h) {
-		glOrtho(-2.0f*ratio, 2.0f*ratio, -2.0f, 2.0f, -2.0f, 2.0f);
+Game_manager gm = Game_manager();
 
-	}
-	else {
-		glOrtho(-2.0f, 2.0f, -2.0f/ratio, 2.0f / ratio, -2.0f, 2.0f);
-	}
-
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
+void display() {
+	gm.display();
 
 }
 
-void displayWindow() {
-	std::cout <<"O Peter e gay mesmo!"<< std::endl;
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glLoadIdentity();
-	glRotatef (45, 10, 10, 20);
-	glutSolidCube(1);
-	glFlush();
-	/*glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glBegin(GL_POLYGON);
-	glVertex3f(-1.0f, -1.0f, 0.0f);
-	glVertex3f(1.0f, -1.0f, 0.0f);
-	glVertex3f(1.0f, 1.0f, 0.0f);
-	glVertex3f(-1.0f, 1.0f, 0.0f);
-	glEnd();
-	glFlush();*/
+void reshape(GLsizei w,GLsizei h) {
+	gm.reshape(w,h);
 
 }
+
+
+
 
 
 
 int main(int argc, char** argv) {
+	
 	
 
 	glutInit(&argc, argv);
@@ -55,9 +28,9 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(600, 600);
 	glutInitWindowPosition(1, 1);
-	glutCreateWindow("Peter gay");
-	glutDisplayFunc(displayWindow);
-	glutReshapeFunc(reshapeWindow);
+	glutCreateWindow("Micro-machines");
+	glutDisplayFunc(display);
+	glutReshapeFunc(reshape);
 	glutMainLoop();
 
 	return 0;
