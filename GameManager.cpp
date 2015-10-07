@@ -64,11 +64,11 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	if (w > h) {
-		glOrtho(-2.0f*ratio, 2.0f*ratio, -2.0f, 2.0f, -2.0f, 2.0f);
+		glOrtho(-4.0f*ratio, 4.0f*ratio, -4.0f, 4.0f, -4.0f, 4.0f);
 
 	}
 	else {
-		glOrtho(-2.0f, 2.0f, -2.0f / ratio, 2.0f / ratio, -2.0f, 2.0f);
+		glOrtho(-4.0f, 4.0f, -4.0f / ratio, 4.0f / ratio, -4.0f, 4.0f);
 	}
 
 	glMatrixMode(GL_MODELVIEW);

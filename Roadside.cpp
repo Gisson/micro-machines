@@ -10,4 +10,5 @@ Roadside::~Roadside()
 
 void Roadside::draw()
 {
+	
 }

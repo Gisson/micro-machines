@@ -14,5 +14,5 @@ void Table::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0f, 0.7f, 0.9f);
-	glutSolidCube(3);
+	glutSolidCube(5);
 }
