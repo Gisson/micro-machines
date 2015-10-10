@@ -6,12 +6,13 @@
 #include "Table.h"
 #include "Car.h"
 #include "Orange.h"
+#include "Roadside.h"
 
 	class Game_manager {
 	private:
 		Table _table;
 		Car _vrum;
-		//Cheerios 
+		Roadside _road;
 		Orange _mrOrange[3];
 	public:
 		Game_manager();

@@ -38,6 +38,10 @@ void Game_manager::display() {
 	glLoadIdentity();
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 	_table.draw();
+	
+	_road.draw();
+
+	
 
 	glPopMatrix();
 	glFlush();
@@ -45,22 +49,21 @@ void Game_manager::display() {
 
 void Game_manager::reshape(GLsizei w, GLsizei h) {
 	glPushMatrix();
+	glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, w, h);
 	GLfloat ratio = GLfloat(w) / GLfloat(h);
-
-
-	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	if (w > h) {
-		glOrtho(-4.0f*ratio, 4.0f*ratio, -4.0f, 4.0f, -4.0f, 4.0f);
+		glOrtho(-20.0f*ratio, 20.0f*ratio, -20.0f, 20.0f, -20.0f, 20.0f);
 
 	}
 	else {
-		glOrtho(-4.0f, 4.0f, -4.0f / ratio, 4.0f / ratio, -4.0f, 4.0f);
+		glOrtho(-20.0f, 20.0f, -20.0f / ratio, 20.0f / ratio, -20.0f, 20.0f);
 	}
 
-	glMatrixMode(GL_MODELVIEW);
+	
 	glPopMatrix();
+
 }
 
 
