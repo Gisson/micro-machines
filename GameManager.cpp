@@ -32,31 +32,19 @@ void Game_manager::init()
 }
 
 void Game_manager::display() {
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
 	glPushMatrix();
-	//glScalef(2.0, 1.0, 1.0);
-	//glRotatef(0, 1, 0, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 	_table.draw();
-	
 
 	glPopMatrix();
 	glFlush();
-	/*glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glBegin(GL_POLYGON);
-	glVertex3f(-1.0f, -1.0f, 0.0f);
-	glVertex3f(1.0f, -1.0f, 0.0f);
-	glVertex3f(1.0f, 1.0f, 0.0f);
-	glVertex3f(-1.0f, 1.0f, 0.0f);
-	glEnd();
-	glFlush();*/
-
 }
 
 void Game_manager::reshape(GLsizei w, GLsizei h) {
-
+	glPushMatrix();
 	glViewport(0, 0, w, h);
 	GLfloat ratio = GLfloat(w) / GLfloat(h);
 
@@ -72,7 +60,7 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 	}
 
 	glMatrixMode(GL_MODELVIEW);
-
+	glPopMatrix();
 }
 
 

@@ -25,9 +25,9 @@ int main(int argc, char** argv) {
 
 	glutInit(&argc, argv);
 	glLoadIdentity();
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(600, 600);
-	glutInitWindowPosition(1, 1);
+	glutInitWindowPosition(-1, -1);
 	glutCreateWindow("Micro-machines");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
