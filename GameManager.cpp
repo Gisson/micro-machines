@@ -40,7 +40,7 @@ void Game_manager::display() {
 	_table.draw();
 	
 	_road.draw();
-
+	_vrum.draw();
 	
 
 	glPopMatrix();

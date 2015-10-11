@@ -5,6 +5,9 @@
 #include "DynamicObject.h";
 
 class Car :DynamicObject {
+
+
+
 public:
 	Car();
 	void draw();
