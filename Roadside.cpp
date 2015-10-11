@@ -12,7 +12,7 @@ Roadside::~Roadside()
 void Roadside::draw()
 {
 	glPushMatrix();
-	glClear(GL_COLOR_BUFFER_BIT);
+	glLoadIdentity();
 	glColor3f(0.4f, 0.6f, 0.0f);
 	for (int i = 0; i < 40; i++) {
 		glPushMatrix();
