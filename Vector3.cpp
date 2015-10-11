@@ -41,10 +41,12 @@ Vector3 Vector3::operator=(const Vector3 &v3)
 
 Vector3 Vector3::operator+(const Vector3& v3)
 {
-	return Vector3(_x + v3.getX, _y + v3.getY, _z + v3.getY);
+	//return Vector3(_x + v3.getX, _y + v3.getY, _z + v3.getY);
+	return Vector3();
 }
 
 Vector3 Vector3::operator-(const Vector3 &v3)
 {
-	return Vector3(_x - v3.getX, _y-v3.getY, _z-v3.getZ);
+	//return Vector3(_x - v3.getX, _y-v3.getY, _z-v3.getZ);
+	return Vector3();
 }

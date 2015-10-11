@@ -10,7 +10,7 @@ DynamicObject::DynamicObject()
 
 void DynamicObject::update(double t)
 {
-	_position.set(_position.getX+(1 / 2)*(_acelaration.getX*t ^ 2),_position.getY+ (1 / 2)*(_acelaration.getY*t ^ 2),_position.getZ+ (1 / 2)*(_acelaration.getZ*t ^ 2));
+	//_position.set(_position.getX+(1 / 2)*(_acelaration.getX*t ^ 2),_position.getY+ (1 / 2)*(_acelaration.getY*t ^ 2),_position.getZ+ (1 / 2)*(_acelaration.getZ*t ^ 2));
 	
 }
 
