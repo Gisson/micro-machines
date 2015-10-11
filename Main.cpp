@@ -14,6 +14,10 @@ void reshape(GLsizei w,GLsizei h) {
 
 }
 
+void keyPressed(unsigned char key,int x,int y) {
+
+
+}
 
 
 
@@ -31,6 +35,7 @@ int main(int argc, char** argv) {
 	glutCreateWindow("Micro-machines");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
+	glutKeyboardFunc(keyPressed);
 	glutMainLoop();
 
 	return 0;

@@ -14,11 +14,12 @@
 		Car _vrum;
 		Roadside _road;
 		Orange _mrOrange[3];
+		int oldTimeSinceStart = 0;
 	public:
 		Game_manager();
 		void display();
 		void reshape(GLsizei h,GLsizei w);
-		void keyPressed();
+		void keyPressed(unsigned char key, int x, int y);
 		void onTimer();
 		void idle();
 		void update(double delta);

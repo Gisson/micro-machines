@@ -10,8 +10,25 @@ Game_manager::Game_manager() {
 
 
 
-void Game_manager::keyPressed()
+void Game_manager::keyPressed(unsigned char key, int x, int y)
 {
+	switch (key)
+	{
+	case GLUT_KEY_UP:
+		//do something here
+		break;
+	case GLUT_KEY_DOWN:
+		//do something here
+		break;
+	case GLUT_KEY_LEFT:
+		//do something here
+		break;
+	case GLUT_KEY_RIGHT:
+		//do something here
+		break;
+	}
+
+	glutPostRedisplay();
 }
 
 void Game_manager::onTimer()
