@@ -54,11 +54,11 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 	GLfloat ratio = GLfloat(w) / GLfloat(h);
 	glLoadIdentity();
 	if (w > h) {
-		glOrtho(-20.0f*ratio, 20.0f*ratio, -20.0f, 20.0f, -20.0f, 20.0f);
+		glOrtho(-5.0f*ratio, 5.0f*ratio, -5.0f, 5.0f, -5.0f, 5.0f);
 
 	}
 	else {
-		glOrtho(-20.0f, 20.0f, -20.0f / ratio, 20.0f / ratio, -20.0f, 20.0f);
+		glOrtho(-5.0f, 5.0f, -5.0f / ratio, 5.0f / ratio, -5.0f, 5.0f);
 	}
 
 	
