@@ -6,7 +6,7 @@
 class DynamicObject : public GameObject {
 
 private:
-	Vector3 _position;
+	Vector3 _position,_dof;
 	double _acelaration , _speed;
 
 public:

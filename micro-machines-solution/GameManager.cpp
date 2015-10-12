@@ -20,16 +20,16 @@ void Game_manager::keyPressed(int key, int x, int y)
 	{
 	case GLUT_KEY_UP:
 		//do something here
-		_vrum.setAcelaration(2);
+		_vrum.setAcelaration(0.008);
 		break;
 	case GLUT_KEY_DOWN:
-		_vrum.setAcelaration(-2);
+		_vrum.setAcelaration(-0.008);
 		break;
 	case GLUT_KEY_LEFT:
-		_vrum.setAcelaration(2);
+		_vrum.setAcelaration(0.008);
 		break;
 	case GLUT_KEY_RIGHT:
-		_vrum.setAcelaration(-2);
+		_vrum.setAcelaration(-0.008);
 		break;
 	}
 
@@ -56,8 +56,8 @@ void Game_manager::init()
 void Game_manager::display() {
 	glPushMatrix();
 	glClear(GL_COLOR_BUFFER_BIT);
-	int newTime=glutGet(GLUT_ELAPSED_TIME);
-	int deltaT = newTime - oldTimeSinceStart;
+	double newTime=glutGet(GLUT_ELAPSED_TIME);
+	double deltaT = (newTime - oldTimeSinceStart) / 1000;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	_vrum.update(1);
