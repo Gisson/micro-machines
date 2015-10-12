@@ -22,7 +22,7 @@ void Roadside::draw()
 		glPopMatrix();
 	}
 
-	for (int i = 0; i < 40; i++) {
+	for (int i = 0; i < 60; i++) {
 		glPushMatrix();
 		glRotatef(6 * i, 0, 0, 1);
 		glTranslatef(1.0, 0, 3);
