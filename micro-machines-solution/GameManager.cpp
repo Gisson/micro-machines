@@ -20,16 +20,16 @@ void Game_manager::keyPressed(int key, int x, int y)
 	{
 	case GLUT_KEY_UP:
 		//do something here
-		_vrum.setAcelaration(0.008);
+		_vrum.acelarate(5);
 		break;
 	case GLUT_KEY_DOWN:
-		_vrum.setAcelaration(-0.008);
+		_vrum.breakAcelaration(5);
 		break;
 	case GLUT_KEY_LEFT:
-		_vrum.setAcelaration(0.008);
+		_vrum.acelarate(5);
 		break;
 	case GLUT_KEY_RIGHT:
-		_vrum.setAcelaration(-0.008);
+		_vrum.breakAcelaration(5);
 		break;
 	}
 
@@ -47,6 +47,7 @@ void Game_manager::idle()
 
 void Game_manager::update(double delta)
 {
+	_vrum.update(delta);
 }
 
 void Game_manager::init()
@@ -56,11 +57,8 @@ void Game_manager::init()
 void Game_manager::display() {
 	glPushMatrix();
 	glClear(GL_COLOR_BUFFER_BIT);
-	double newTime=glutGet(GLUT_ELAPSED_TIME);
-	double deltaT = (newTime - oldTimeSinceStart) / 1000;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	_vrum.update(1);
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 	_table.draw();
 	for (int i = 0; i < 3; i++)
@@ -68,8 +66,6 @@ void Game_manager::display() {
 	_road.draw();
 	_vrum.draw();
 	
-	_vrum.update(deltaT);
-	oldTimeSinceStart = newTime;
 	glPopMatrix();
 	glFlush();
 	glutPostRedisplay();

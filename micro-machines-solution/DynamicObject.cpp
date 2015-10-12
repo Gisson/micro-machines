@@ -4,21 +4,19 @@
 
 DynamicObject::DynamicObject()
 {
-	_speed = 0;
-	_acelaration = 0;
+	_speed = 0.0;
+	_acelaration = 0.0;
 	_position = Vector3(0, 0, 0);
-	_dof = Vector3(0, 1, 0);
 }
 
 void DynamicObject::update(double time)
 {
-
+	time = time / 1000;
 	setSpeed(getSpeed() + _acelaration*time);
-	_position.set((_position.getX() + getSpeed()) * time,(_position.getY() + getSpeed()) * time,0);
-
-		std::cout << _position.getY() + _acelaration*time << std::endl;
-		if(_acelaration>0) _acelaration -= 0.00001;
-		else if (_acelaration < 0) _acelaration += 0.00001;
+	_position.set(0,0.5*(_position.getY() + getSpeed()) * time, 0);
+		std::cout << time << std::endl;
+		if(_acelaration>0) _acelaration -= 1;
+		else if (_acelaration < 0) _acelaration += 1;
 }
 
 void DynamicObject::setSpeed(double speed)
@@ -45,4 +43,20 @@ double DynamicObject::getSpeed()
 
 Vector3 DynamicObject::getPosition() {
 	return _position;
+}
+
+void DynamicObject::acelarate(int amount) {
+	if (_acelaration > 1000) {
+		_acelaration = 1000;
+		return;
+	}
+	_acelaration += amount;
+}
+
+void DynamicObject::breakAcelaration(int amount) {
+	if (_acelaration < -1000) {
+		_acelaration = -1000;
+		return;
+	}
+	_acelaration -= amount;
 }

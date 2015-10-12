@@ -17,6 +17,8 @@ public:
 	Vector3 getPosition();
 	double getAcelaration();
 	double getSpeed();
+	void acelarate(int);
+	void breakAcelaration(int);
 
 };
 

@@ -20,7 +20,10 @@ void keyPressed(int key,int x,int y) {
 
 }
 
-
+void update(int value) {
+	gm.update(value);
+	glutTimerFunc(10, update, 10);
+}
 
 
 
@@ -35,6 +38,7 @@ int main(int argc, char** argv) {
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutSpecialFunc(keyPressed);
+	glutTimerFunc(10, update, 10);
 	glutMainLoop();
 
 	return 0;
