@@ -66,11 +66,11 @@ void Game_manager::display() {
 }
 
 void Game_manager::reshape(GLsizei w, GLsizei h) {
-	glPushMatrix();
+	
 	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 	glViewport(0, 0, w, h);
 	GLfloat ratio = GLfloat(w) / GLfloat(h);
-	glLoadIdentity();
 	if (w > h) {
 		glOrtho(-5.0f*ratio, 5.0f*ratio, -5.0f, 5.0f, -5.0f, 5.0f);
 
@@ -80,7 +80,6 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 	}
 
 	
-	glPopMatrix();
 
 }
 
