@@ -1,11 +1,11 @@
 
 #ifndef __GAMEMANAGER_H__
 #define __GAMEMANAGER_H__
-
+#include "Orange.h"
 #include <GL/glut.h>
 #include "Table.h"
 #include "Car.h"
-#include "Orange.h"
+
 #include "Roadside.h"
 
 	class Game_manager {

@@ -55,7 +55,8 @@ void Game_manager::display() {
 	glLoadIdentity();
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 	_table.draw();
-	
+	for (int i = 0; i < 3; i++)
+		_mrOrange[0].draw();
 	_road.draw();
 	_vrum.draw();
 	

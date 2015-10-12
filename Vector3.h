@@ -14,7 +14,7 @@ public:
 	void set(double, double, double);
 	Vector3 operator=(const Vector3&);
 	Vector3 operator+(const Vector3&);
-	Vector3 operator-(const Vector3& );
+	Vector3 operator-(const Vector3&);
 
 };
 
