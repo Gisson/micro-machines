@@ -14,7 +14,7 @@ void Table::draw()
 {
 	glPushMatrix();
 	glLoadIdentity();
-	glColor3f(1.0f, 0.7f, 0.9f);
+	glColor3f(1.0f, 1.0f, 1.0f);
 	//glTranslatef(20, 20, 10.0f);
 	glutSolidCube(6);
 	glPopMatrix();
