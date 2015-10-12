@@ -1,7 +1,7 @@
 #ifndef __BUTTER_H__
 #define __BUTTER_H__
 
-#include "Obstacle.h";
+#include "Obstacle.h"
 
 class Butter :Obstacle {
 public:

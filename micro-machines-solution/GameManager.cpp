@@ -1,9 +1,12 @@
-#include "GameManager.h";
+#include <iostream>
+
+#include "GameManager.h"
 
 
 Game_manager::Game_manager() {
-
-
+	for (int i = 0;i < 3;i++) {
+		_mrOrange[i] = Orange();
+	}
 }
 
 
@@ -16,15 +19,16 @@ void Game_manager::keyPressed(unsigned char key, int x, int y)
 	{
 	case GLUT_KEY_UP:
 		//do something here
+		_vrum.setAcelaration(0,2, 0);
 		break;
 	case GLUT_KEY_DOWN:
-		//do something here
+		_vrum.setAcelaration(0, -2, 0);
 		break;
 	case GLUT_KEY_LEFT:
-		//do something here
+		_vrum.setAcelaration(2, 0, 0);
 		break;
 	case GLUT_KEY_RIGHT:
-		//do something here
+		_vrum.setAcelaration(-2, 0, 0);
 		break;
 	}
 
@@ -50,7 +54,10 @@ void Game_manager::init()
 
 void Game_manager::display() {
 	glPushMatrix();
+	std::cout << "In display" << std::endl;
 	glClear(GL_COLOR_BUFFER_BIT);
+	int newTime=glutGet(GLUT_ELAPSED_TIME);
+	int deltaT = newTime - oldTimeSinceStart;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
@@ -60,7 +67,8 @@ void Game_manager::display() {
 	_road.draw();
 	_vrum.draw();
 	
-
+	_vrum.update(deltaT);
+	oldTimeSinceStart = newTime;
 	glPopMatrix();
 	glFlush();
 }

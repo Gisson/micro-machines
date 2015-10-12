@@ -1,6 +1,6 @@
 #ifndef __GAMEOBJECT_H__
 #define __GAMEOBJECT_H__
-#include "Entity.h";
+#include "Entity.h"
 
 class GameObject :Entity {
 public:

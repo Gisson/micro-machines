@@ -2,7 +2,7 @@
 #define __LIGHTSOURCE_H__
 
 #include <GL/glut.h>
-#include "Vector3.h";
+#include "Vector3.h"
 
 class LightSource {
 private:

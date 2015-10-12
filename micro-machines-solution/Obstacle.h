@@ -3,10 +3,10 @@
 #define  __OBSTACLE_H__
 
 
-#include "GameObject.h";
-#include "DynamicObject.h";
+#include "GameObject.h"
+#include "DynamicObject.h"
 
-class Obstacle :DynamicObject {
+class Obstacle : public DynamicObject {
 public:
 	Obstacle();
 	~Obstacle();

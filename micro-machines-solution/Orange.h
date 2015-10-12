@@ -6,6 +6,8 @@
 #include "Obstacle.h"
 
 class Orange :Obstacle {
+private:
+	double _xPosition, _yPosition;
 public:
 	Orange();
 	void draw();

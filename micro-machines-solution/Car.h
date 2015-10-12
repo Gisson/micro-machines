@@ -1,10 +1,9 @@
-
 #ifndef __CAR_H__
 #define __CAR_H__
-#include "GameObject.h";
-#include "DynamicObject.h";
+#include "GameObject.h"
+#include "DynamicObject.h"
 
-class Car :DynamicObject {
+class Car : public DynamicObject {
 
 
 

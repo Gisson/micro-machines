@@ -2,10 +2,10 @@
 #ifndef __ROADSIDE_H__
 #define  __ROADSIDE_H__
 
-#include "GameObject.h";
-#include "StaticObject.h";
+#include "GameObject.h"
+#include "StaticObject.h"
 
-class Roadside :StaticObject {
+class Roadside : public StaticObject {
 public:
 	Roadside();
 	~Roadside();

@@ -1,4 +1,3 @@
-
 #ifndef __GAMEMANAGER_H__
 #define __GAMEMANAGER_H__
 #include "Orange.h"
@@ -10,6 +9,7 @@
 
 	class Game_manager {
 	private:
+		GameObject *_obj[3];
 		Table _table;
 		Car _vrum;
 		Roadside _road;

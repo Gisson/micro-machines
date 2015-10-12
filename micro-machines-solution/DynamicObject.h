@@ -1,9 +1,9 @@
 #ifndef __DYNAMICOBJECT_H__
 #define __DYNAMICOBJECT_H__
 
-#include "GameObject.h";
+#include "GameObject.h"
 
-class DynamicObject :GameObject {
+class DynamicObject : public GameObject {
 
 private:
 	Vector3 _speed, _acelaration,_position;
@@ -11,8 +11,9 @@ private:
 public:
 	DynamicObject();
 	void update(double t);
-	void setSpeed(const Vector3 &v3);
-	void setSpeed(double x, double y, double z);
+	void setAcelaration(const Vector3 &v3);
+	void setAcelaration(double x, double y, double z);
+	Vector3 getAcelaration();
 	Vector3 getSpeed();
 
 };
