@@ -19,7 +19,7 @@
 		Game_manager();
 		void display();
 		void reshape(GLsizei h,GLsizei w);
-		void keyPressed(unsigned char key, int x, int y);
+		void keyPressed(int key, int x, int y);
 		void onTimer();
 		void idle();
 		void update(double delta);

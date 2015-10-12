@@ -6,15 +6,17 @@
 class DynamicObject : public GameObject {
 
 private:
-	Vector3 _speed, _acelaration,_position;
+	Vector3 _position;
+	double _acelaration , _speed;
 
 public:
 	DynamicObject();
-	void update(double t);
-	void setAcelaration(const Vector3 &v3);
-	void setAcelaration(double x, double y, double z);
-	Vector3 getAcelaration();
-	Vector3 getSpeed();
+	void update(double);
+	void setAcelaration(double);
+	void setSpeed(double);
+	Vector3 getPosition();
+	double getAcelaration();
+	double getSpeed();
 
 };
 

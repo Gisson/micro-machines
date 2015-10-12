@@ -8,7 +8,8 @@ void Car::draw()
 {
 	glLoadIdentity();
 	glPushMatrix();
-	glTranslatef(1.8, 0, 3);
+	//glTranslatef(1.8, 0, 3);
+	glTranslatef(getPosition().getX(), getPosition().getY(), getPosition().getZ());
 	glRotatef(90, 0, 0, 1);
 
 	//---------------------WHEELS---------------------

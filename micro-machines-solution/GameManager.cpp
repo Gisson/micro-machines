@@ -13,22 +13,23 @@ Game_manager::Game_manager() {
 
 
 
-void Game_manager::keyPressed(unsigned char key, int x, int y)
+void Game_manager::keyPressed(int key, int x, int y)
 {
+	std::cout << "Inside"<< std::endl;
 	switch (key)
 	{
 	case GLUT_KEY_UP:
 		//do something here
-		_vrum.setAcelaration(0,2, 0);
+		_vrum.setAcelaration(2);
 		break;
 	case GLUT_KEY_DOWN:
-		_vrum.setAcelaration(0, -2, 0);
+		_vrum.setAcelaration(-2);
 		break;
 	case GLUT_KEY_LEFT:
-		_vrum.setAcelaration(2, 0, 0);
+		_vrum.setAcelaration(2);
 		break;
 	case GLUT_KEY_RIGHT:
-		_vrum.setAcelaration(-2, 0, 0);
+		_vrum.setAcelaration(-2);
 		break;
 	}
 
@@ -54,16 +55,16 @@ void Game_manager::init()
 
 void Game_manager::display() {
 	glPushMatrix();
-	std::cout << "In display" << std::endl;
 	glClear(GL_COLOR_BUFFER_BIT);
 	int newTime=glutGet(GLUT_ELAPSED_TIME);
 	int deltaT = newTime - oldTimeSinceStart;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	_vrum.update(1);
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 	_table.draw();
 	for (int i = 0; i < 3; i++)
-		_mrOrange[0].draw();
+		_mrOrange[i].draw();
 	_road.draw();
 	_vrum.draw();
 	
@@ -71,6 +72,7 @@ void Game_manager::display() {
 	oldTimeSinceStart = newTime;
 	glPopMatrix();
 	glFlush();
+	glutPostRedisplay();
 }
 
 void Game_manager::reshape(GLsizei w, GLsizei h) {
