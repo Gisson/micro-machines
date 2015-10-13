@@ -15,7 +15,6 @@ Game_manager::Game_manager() {
 
 void Game_manager::keyPressed(int key, int x, int y)
 {
-	std::cout << "Inside"<< std::endl;
 	switch (key)
 	{
 	case GLUT_KEY_UP:
@@ -23,13 +22,13 @@ void Game_manager::keyPressed(int key, int x, int y)
 		_vrum.acelarate(5);
 		break;
 	case GLUT_KEY_DOWN:
-		_vrum.breakAcelaration(5);
+		_vrum.breakAcelaration(-5);
 		break;
 	case GLUT_KEY_LEFT:
-		_vrum.acelarate(5);
+		_vrum.turnLeft(5);
 		break;
 	case GLUT_KEY_RIGHT:
-		_vrum.breakAcelaration(5);
+		_vrum.turnRight(5);
 		break;
 	}
 

@@ -7,7 +7,8 @@ class DynamicObject : public GameObject {
 
 private:
 	Vector3 _position,_dof;
-	double _acelaration , _speed;
+	double _acelaration , _speed,_angle;
+	
 
 public:
 	DynamicObject();
@@ -19,6 +20,10 @@ public:
 	double getSpeed();
 	void acelarate(int);
 	void breakAcelaration(int);
+	void turnLeft(double);
+	void turnRight(double);
+	Vector3 getDof();
+	double getAngle();
 
 };
 

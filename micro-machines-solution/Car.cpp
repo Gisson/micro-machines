@@ -1,3 +1,4 @@
+#include <math.h>
 #include "Car.h"
 
 Car::Car()
@@ -9,8 +10,9 @@ void Car::draw()
 	glLoadIdentity();
 	glPushMatrix();
 	//glTranslatef(1.8, 0, 3);
+	
 	glTranslatef(getPosition().getX(), getPosition().getY(), getPosition().getZ());
-	glRotatef(90, 0, 0, 1);
+	glRotatef(getAngle(), 0, 0, 1);
 
 	//---------------------WHEELS---------------------
 	glColor3f(0, 0, 0);
