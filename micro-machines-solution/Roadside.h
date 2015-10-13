@@ -9,6 +9,7 @@ class Roadside : public StaticObject {
 public:
 	Roadside();
 	~Roadside();
+	void draw(bool);
 	void draw();
 };
 

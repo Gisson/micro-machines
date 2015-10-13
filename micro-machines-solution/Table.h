@@ -8,6 +8,7 @@ class Table : public StaticObject {
 public:
 	Table();
 	~Table();
+	void draw(bool);
 	void draw();
 };
 

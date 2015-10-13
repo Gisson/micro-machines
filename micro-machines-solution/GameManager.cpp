@@ -14,7 +14,7 @@ Game_manager::Game_manager() {
 }
 
 
-void Game_manager::keyPressed(int key, int x, int y)
+void Game_manager::specialKeyPressed(int key, int x, int y)
 {
 	switch (key)
 	{
@@ -34,6 +34,20 @@ void Game_manager::keyPressed(int key, int x, int y)
 	}
 
 	glutPostRedisplay();
+}
+void Game_manager::keyPressed(unsigned char key, int x, int y)
+{
+	switch (key) {
+	case 'a':
+		_isWired == true ? _isWired = false : _isWired = true;
+		break;
+	default:
+		std::cout << "Not supported" << std::endl;
+		break;
+
+	}
+	glutPostRedisplay();
+
 }
 
 void Game_manager::onTimer()
@@ -60,14 +74,25 @@ void Game_manager::display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
-	_table.draw();
-	for (int i = 0; i < 3; i++)
-		_mrOrange[i].draw();
-	for (int j = 0; j < 5; j++)
-		_mrButter[j].draw();
-	_road.draw();
-	_vrum.draw();
-	
+
+	if (!_isWired) {
+		_table.draw();
+		for (int i = 0; i < 3; i++)
+			_mrOrange[i].draw();
+		for (int j = 0; j < 5; j++)
+			_mrButter[j].draw();
+		_road.draw();
+		_vrum.draw();
+	}else {
+		_table.draw();
+		for (int i = 0; i < 3; i++)
+			_mrOrange[i].draw(_isWired);
+		for (int j = 0; j < 5; j++)
+			_mrButter[j].draw(_isWired);
+		_road.draw(_isWired);
+		_vrum.draw(_isWired);
+	}
+
 	glPopMatrix();
 	glFlush();
 	glutPostRedisplay();
@@ -97,4 +122,9 @@ void Game_manager::setTable(Table t) {
 }
 Table Game_manager::getTable() {
 	return _table;
+}
+
+bool Game_manager::isWired()
+{
+	return _isWired;
 }

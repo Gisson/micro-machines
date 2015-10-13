@@ -11,6 +11,7 @@ private:
 public:
 	Butter();
 	~Butter();
+	void draw(bool);
 	void draw();
 };
 
