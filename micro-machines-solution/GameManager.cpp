@@ -19,11 +19,10 @@ void Game_manager::keyPressed(int key, int x, int y)
 	switch (key)
 	{
 	case GLUT_KEY_UP:
-		//do something here
-		_vrum.acelarate(5);
+		_vrum.acelarate(4);
 		break;
 	case GLUT_KEY_DOWN:
-		_vrum.breakAcelaration(-5);
+		_vrum.breakAcelaration(-4);
 		break;
 	case GLUT_KEY_LEFT:
 		_vrum.turnLeft(5);
@@ -32,8 +31,6 @@ void Game_manager::keyPressed(int key, int x, int y)
 		_vrum.turnRight(5);
 		break;
 	}
-
-	glutPostRedisplay();
 }
 
 void Game_manager::onTimer()

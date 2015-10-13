@@ -1,29 +1,34 @@
+
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include "DynamicObject.h"
 
+#define PI 3.14159265
 
 DynamicObject::DynamicObject()
 {
 	_speed = 0.0;
 	_acelaration = 0.0;
 	_position = Vector3(0, 0, 0);
-	_angle = 90;
-	_dof = Vector3(cos(_angle), sin(_angle), 0);
+	_angle = 0;
+	_dof = Vector3();
 }
 
 void DynamicObject::update(double time)
 {
 	time = time / 1000;
-	setSpeed(getSpeed() + _acelaration*time);
+	if (_speed > 5)
+		setSpeed(5);
+	else if (_speed < -5)
+		setSpeed(-5);
+	else
+	{
+		setSpeed(getSpeed() + _acelaration*time);
+	}
 	
-	_position.set(0, _position.getY()  + getSpeed() * time + 0.5 * _acelaration * time *time, 0);
-		std::cout << _speed << "aaa" << _acelaration << std::endl;
-		if(_acelaration>0 && _speed > 0) _acelaration = -0.5;
-		else if (_acelaration < 0 && _speed < 0) {
-			_acelaration = 0;
-			_speed = 0;
-		}
+	_position.set(_position.getX() + cos(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time , _position.getY()  + sin(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time, 0);
+	
+	std::cout << _speed << "aaa" << _acelaration << std::endl;
 }
 
 void DynamicObject::setSpeed(double speed)
@@ -33,6 +38,7 @@ void DynamicObject::setSpeed(double speed)
 
 void DynamicObject::setAcelaration(double d)
 {
+	
 	_acelaration = d;
 }
 
@@ -53,39 +59,26 @@ Vector3 DynamicObject::getPosition() {
 }
 
 void DynamicObject::acelarate(int amount) {
-	if (_acelaration > 1000) {
-		_acelaration = 1000;
-		return;
-	}
-	_acelaration = amount;
+
+	setAcelaration(amount);
 }
 
 void DynamicObject::breakAcelaration(int amount) {
-	if (_acelaration < -1000) {
-		_acelaration = -1000;
-		return;
-	}
-	_acelaration = amount;
+
+	setAcelaration(amount);
+
 }
 
 
 void DynamicObject::turnLeft(double angle) {
-	if (_angle+angle > 360) {
-		_angle += angle - 360;
-		_dof.set(cos(_angle), sin(_angle), 0);
-		return;
-	}
+	if (_angle + angle > 359)
+		_angle = angle - 359;
 	_angle += angle;
-	_dof.set(cos(_angle), sin(_angle), 0);
 }
 void DynamicObject::turnRight(double angle) {
-	if (_angle - angle < -360) {
-		_angle -= -angle +360;
-		_dof.set(cos(_angle), sin(_angle), 0);
-		return;
-	}
+	if (_angle - angle < 0)
+		_angle = angle + 360;
 	_angle -= angle;
-	_dof.set(cos(_angle), sin(_angle), 0);
 }
 
 Vector3 DynamicObject::getDof() {

@@ -15,7 +15,6 @@ void reshape(GLsizei w,GLsizei h) {
 }
 
 void keyPressed(int key,int x,int y) {
-	std::cout << "yes" << std::endl;
 	gm.keyPressed(key, x, y);
 
 }
