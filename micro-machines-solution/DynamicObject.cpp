@@ -28,7 +28,7 @@ void DynamicObject::update(double time)
 	
 	_position.set(_position.getX() + cos(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time , _position.getY()  + sin(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time, 0);
 	
-	std::cout << _speed << "aaa" << _acelaration << std::endl;
+	std::cout << _speed << "aaa" << _angle << std::endl;
 }
 
 void DynamicObject::setSpeed(double speed)
@@ -70,15 +70,13 @@ void DynamicObject::breakAcelaration(int amount) {
 }
 
 
-void DynamicObject::turnLeft(double angle) {
-	if (_angle + angle > 359)
-		_angle = angle - 359;
-	_angle += angle;
-}
-void DynamicObject::turnRight(double angle) {
-	if (_angle - angle < 0)
-		_angle = angle + 360;
-	_angle -= angle;
+void DynamicObject::turn(double angle) {
+	_angle = (int)(_angle + angle) % 360;
+	/*if (_angle + angle > 359)
+		_angle -= 360;
+	else if (_angle + angle < 1)
+		_angle += 360;
+	_angle += angle;*/
 }
 
 Vector3 DynamicObject::getDof() {

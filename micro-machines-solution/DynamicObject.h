@@ -21,8 +21,7 @@ public:
 	double getSpeed();
 	void acelarate(int);
 	void breakAcelaration(int);
-	void turnLeft(double);
-	void turnRight(double);
+	void turn(double);
 	Vector3 getDof();
 	double getAngle();
 

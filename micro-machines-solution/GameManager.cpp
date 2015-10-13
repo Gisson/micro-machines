@@ -25,10 +25,10 @@ void Game_manager::specialKeyPressed(int key, int x, int y)
 		_vrum.breakAcelaration(-4);
 		break;
 	case GLUT_KEY_LEFT:
-		_vrum.turnLeft(5);
+		_vrum.turn(5);
 		break;
 	case GLUT_KEY_RIGHT:
-		_vrum.turnRight(5);
+		_vrum.turn(-5);
 		break;
 	}
 }
