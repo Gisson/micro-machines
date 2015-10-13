@@ -24,7 +24,6 @@ void DynamicObject::update(double time)
 			_acelaration = 0;
 			_speed = 0;
 		}
-	
 }
 
 void DynamicObject::setSpeed(double speed)

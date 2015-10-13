@@ -4,13 +4,14 @@
 
 
 Game_manager::Game_manager() {
+	srand(time(NULL));
 	for (int i = 0;i < 3;i++) {
 		_mrOrange[i] = Orange();
 	}
+	for (int j = 0; j < 5; j++) {
+		_mrButter[j] = Butter();
+	}
 }
-
-
-
 
 
 void Game_manager::keyPressed(int key, int x, int y)
@@ -62,6 +63,8 @@ void Game_manager::display() {
 	_table.draw();
 	for (int i = 0; i < 3; i++)
 		_mrOrange[i].draw();
+	for (int j = 0; j < 5; j++)
+		_mrButter[j].draw();
 	_road.draw();
 	_vrum.draw();
 	
