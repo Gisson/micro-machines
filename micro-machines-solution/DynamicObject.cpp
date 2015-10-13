@@ -1,4 +1,3 @@
-#include <iostream>
 #include "DynamicObject.h"
 
 
@@ -14,7 +13,6 @@ void DynamicObject::update(double time)
 	time = time / 1000;
 	setSpeed(getSpeed() + _acelaration*time);
 	_position.set(0,0.5*(_position.getY() + getSpeed()) * time, 0);
-		std::cout << time << std::endl;
 		if(_acelaration>0) _acelaration -= 1;
 		else if (_acelaration < 0) _acelaration += 1;
 }
