@@ -9,6 +9,7 @@ class Car : public DynamicObject {
 
 public:
 	Car();
+	void draw(bool);
 	void draw();
 };
 

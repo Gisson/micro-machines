@@ -10,6 +10,7 @@ private:
 	double _xPosition, _yPosition;
 public:
 	Orange();
+	void draw(bool);
 	void draw();
 };
 
