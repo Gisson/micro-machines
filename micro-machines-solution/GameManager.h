@@ -16,7 +16,7 @@
 		Roadside _road = Roadside();
 		Orange _mrOrange[3];
 		Butter _mrButter[5];
-		bool _isWired = true;
+		bool _isWired = false;
 		int oldTimeSinceStart = 0;
 	public:
 		Game_manager();

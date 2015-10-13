@@ -91,7 +91,7 @@ void Car::draw()
 
 	//--------------------FRONT WHEELS----------------
 	glPushMatrix();
-	glTranslatef(0.25, 0, 0);
+	glTranslatef(0.20, 0, 0);
 
 	//---------------------LEFT FRONT-----------------
 	glPushMatrix();
@@ -141,8 +141,8 @@ void Car::draw()
 
 	glColor3f(0, 1, 0);
 
-	glScalef(2, 1, 1);
-	glutSolidCube(0.5);
+	glScalef(1.2, 0.4, 0.4);
+	glutSolidCube(0.4);
 
 
 
