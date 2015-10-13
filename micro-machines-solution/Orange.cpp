@@ -8,7 +8,6 @@ Orange::Orange()
 
 void Orange::draw()
 {
-
 	glPushMatrix();
 	glLoadIdentity();
 	glColor3f(1.0, 0.5, 0.0 );

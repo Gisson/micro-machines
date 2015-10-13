@@ -28,7 +28,7 @@ void update(int value) {
 
 
 int main(int argc, char** argv) {
-	srand(time(NULL));
+
 	glutInit(&argc, argv);
 	glLoadIdentity();
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
