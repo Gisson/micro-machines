@@ -27,8 +27,8 @@ void DynamicObject::update(double time)
 		setSpeed(getSpeed() + _acelaration*time);
 	}
 	
-	_position->set((_position->getX() + cos(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time)*0.04 ,( _position->getY()  + sin(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time)*0.04, 0);
-	//std::cout << _speed << "aaa" << _position.getX() << std::endl;
+	_position->set((_position->getX() + cos(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time) ,( _position->getY()  + sin(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time), 0);
+	//std::cout << _speed << "aaa" << _position->getX() << std::endl;
 }
 
 void DynamicObject::setSpeed(double speed)

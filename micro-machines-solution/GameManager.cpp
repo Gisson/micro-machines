@@ -11,13 +11,11 @@ Game_manager::Game_manager() {
 	_elements.push_back(_table);
 	_road = new Roadside();
 	_elements.push_back(_road);
-	for (int i = 0;i < 3;i++) {
-		_mrOrange[i] = new Orange();
-		_elements.push_back(_mrOrange[i]);
+	for (int i = 0;i < 20;i++) {
+		_elements.push_back(new Orange());
 	}
 	for (int i = 0; i < 5; i++) {
-		_mrButter[i] = new Butter();
-		_elements.push_back(_mrButter[i]);
+		_elements.push_back(new Butter());
 	}
 	_vrum = new Car();
 	_elements.push_back(_vrum);
@@ -29,16 +27,16 @@ void Game_manager::specialKeyPressed(int key, int x, int y)
 	switch (key)
 	{
 	case GLUT_KEY_UP:
-		_vrum->acelarate(4);
+		_vrum->acelarate(ACELARATION_NUMBER);
 		break;
 	case GLUT_KEY_DOWN:
-		_vrum->breakAcelaration(-4);
+		_vrum->breakAcelaration(-ACELARATION_NUMBER);
 		break;
 	case GLUT_KEY_LEFT:
-		_vrum->turn(5);
+		_vrum->turn(ANGLE_TURN);
 		break;
 	case GLUT_KEY_RIGHT:
-		_vrum->turn(-5);
+		_vrum->turn(-ANGLE_TURN);
 		break;
 	}
 }
@@ -49,7 +47,7 @@ void Game_manager::keyPressed(unsigned char key, int x, int y)
 		_isWired == true ? _isWired = false : _isWired = true;
 		break;
 	default:
-		//std::cout << "Not supported" << std::endl;
+		std::cout << "Not supported" << std::endl;
 		break;
 
 	}
@@ -89,23 +87,10 @@ void Game_manager::display() {
 		for (GameObject* go : _elements) {
 			go->draw();
 		}
-		/*_table.draw();
-		for (int i = 0; i < 3; i++)
-			_mrOrange[i].draw();
-		for (int j = 0; j < 5; j++)
-			_mrButter[j].draw();
-		_road.draw();
-		_vrum.draw();*/
+
 	}else {
 		for (GameObject *go : _elements)
 			go->draw(_isWired);
-		/*_table.draw();
-		for (int i = 0; i < 3; i++)
-			_mrOrange[i].draw(_isWired);
-		for (int j = 0; j < 5; j++)
-			_mrButter[j].draw(_isWired);
-		_road.draw(_isWired);
-		_vrum.draw(_isWired);*/
 	}
 
 	glPopMatrix();
@@ -117,14 +102,14 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glViewport(0, 0, w, h);
+	glViewport(VIEWPORT_X, VIEWPORT_Y, w, h);
 	GLfloat ratio = GLfloat(w) / GLfloat(h);
 	if (w > h) {
-		glOrtho(-5.0f*ratio, 5.0f*ratio, -5.0f, 5.0f, -5.0f, 5.0f);
+		glOrtho(-WINDOW_SIZE*ratio, WINDOW_SIZE*ratio, -WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE);
 
 	}
 	else {
-		glOrtho(-5.0f, 5.0f, -5.0f / ratio, 5.0f / ratio, -5.0f, 5.0f);
+		glOrtho(-WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE / ratio, WINDOW_SIZE / ratio, -WINDOW_SIZE, WINDOW_SIZE);
 	}
 
 	

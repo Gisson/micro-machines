@@ -6,19 +6,24 @@
 #include <algorithm>
 #include "Orange.h"
 #include "Butter.h"
-
 #include "Table.h"
 #include "Car.h"
-
 #include "Roadside.h"
+
+
+#define  ACELARATION_NUMBER  5.0
+#define  ANGLE_TURN  5.0
+#define  WINDOW_SIZE 5.0
+#define  ZERO		 0.0
+#define	 VIEWPORT_X  0.0
+#define   VIEWPORT_Y  0.0
+
 
 	class Game_manager {
 	private:
 		Table* _table;
 		Car* _vrum;
 		Roadside* _road;
-		Orange* _mrOrange[3];
-		Butter* _mrButter[5];
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;
 		std::vector<GameObject*> _elements;

@@ -12,7 +12,7 @@ void Orange::draw(bool isWired)
 	glLoadIdentity();
 	glColor3f(1.0, 0.5, 0.0 );
 	glTranslatef( _xPosition , _yPosition ,3.2);
-	isWired==true? glutWireSphere(0.2, 100, 100) :glutSolidSphere(0.2,100,100);
+	isWired==true? glutWireSphere(0.2, 10, 10) :glutSolidSphere(0.2,100,100);
 	glPopMatrix();
 
 }

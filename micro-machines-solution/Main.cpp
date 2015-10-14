@@ -2,29 +2,29 @@
 #include "GameManager.h"
 
 
-Game_manager gm = Game_manager();
+Game_manager* gm =new Game_manager();
 
 void display() {
-	gm.display();
+	gm->display();
 
 }
 
 void reshape(GLsizei w,GLsizei h) {
-	gm.reshape(w,h);
+	gm->reshape(w,h);
 
 }
 
 void specialKeyPressed(int key,int x,int y) {
 	//std::cout << "yes" << std::endl;
-	gm.specialKeyPressed(key, x, y);
+	gm->specialKeyPressed(key, x, y);
 }
 
 void keyPressed(unsigned char key, int x, int y) {
-	gm.keyPressed(key,x,y);
+	gm->keyPressed(key,x,y);
 }
 
 void update(int value) {
-	gm.update(value);
+	gm->update(value);
 	glutTimerFunc(10, update, 10);
 }
 
