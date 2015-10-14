@@ -9,9 +9,10 @@ DynamicObject::DynamicObject()
 {
 	_speed = 0.0;
 	_acelaration = 0.0;
-	_position = Vector3(0, 0, 0);
+	_position = new Vector3(0.0, 0.0, 0.0);
 	_angle = 0;
 	_dof = Vector3();
+
 }
 
 void DynamicObject::update(double time)
@@ -26,9 +27,8 @@ void DynamicObject::update(double time)
 		setSpeed(getSpeed() + _acelaration*time);
 	}
 	
-	_position.set(_position.getX() + cos(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time , _position.getY()  + sin(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time, 0);
-	
-	std::cout << _speed << "aaa" << _angle << std::endl;
+	_position->set((_position->getX() + cos(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time)*0.04 ,( _position->getY()  + sin(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time)*0.04, 0);
+	//std::cout << _speed << "aaa" << _position.getX() << std::endl;
 }
 
 void DynamicObject::setSpeed(double speed)
@@ -54,7 +54,7 @@ double DynamicObject::getSpeed()
 	return _speed;
 }
 
-Vector3 DynamicObject::getPosition() {
+Vector3* DynamicObject::getPosition() {
 	return _position;
 }
 
@@ -78,6 +78,7 @@ void DynamicObject::turn(double angle) {
 		_angle += 360;
 	_angle += angle;*/
 }
+
 
 Vector3 DynamicObject::getDof() {
 	return _dof;

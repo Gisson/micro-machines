@@ -5,7 +5,7 @@
 #include <time.h>
 #include "Obstacle.h"
 
-class Orange :Obstacle {
+class Orange : public Obstacle {
 private:
 	double _xPosition, _yPosition;
 public:

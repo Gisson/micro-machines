@@ -8,6 +8,8 @@ class StaticObject : public GameObject {
 public:
 	StaticObject();
 	~StaticObject();
+	void draw();
+	void update(double t);
 
 };
 

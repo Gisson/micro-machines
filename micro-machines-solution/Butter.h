@@ -5,7 +5,7 @@
 #include <time.h>
 #include "Obstacle.h"
 
-class Butter :Obstacle {
+class Butter :public Obstacle {
 private:
 	double _xPosition, _yPosition;
 public:

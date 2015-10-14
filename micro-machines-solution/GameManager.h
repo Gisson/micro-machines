@@ -1,8 +1,12 @@
 #ifndef __GAMEMANAGER_H__
 #define __GAMEMANAGER_H__
+#include <memory>
+#include <vector>
+#include <GL/glut.h>
+#include <algorithm>
 #include "Orange.h"
 #include "Butter.h"
-#include <GL/glut.h>
+
 #include "Table.h"
 #include "Car.h"
 
@@ -10,14 +14,14 @@
 
 	class Game_manager {
 	private:
-		GameObject *_obj[3];
-		Table _table = Table();
-		Car _vrum = Car();
-		Roadside _road = Roadside();
-		Orange _mrOrange[3];
-		Butter _mrButter[5];
+		Table* _table;
+		Car* _vrum;
+		Roadside* _road;
+		Orange* _mrOrange[3];
+		Butter* _mrButter[5];
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;
+		std::vector<GameObject*> _elements;
 	public:
 		Game_manager();
 		void display();

@@ -10,6 +10,7 @@ public:
 	~Table();
 	void draw(bool);
 	void draw();
+	void update();
 };
 
 
