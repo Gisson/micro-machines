@@ -10,7 +10,6 @@ class Car : public DynamicObject {
 public:
 	Car();
 	void update(double delta);
-	void draw(bool);
 	void draw();
 };
 

@@ -16,7 +16,7 @@
 #define  WINDOW_SIZE 5.0
 #define  ZERO		 0.0
 #define	 VIEWPORT_X  0.0
-#define   VIEWPORT_Y  0.0
+#define  VIEWPORT_Y  0.0
 
 
 	class Game_manager {

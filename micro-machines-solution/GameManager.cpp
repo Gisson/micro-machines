@@ -84,15 +84,15 @@ void Game_manager::display() {
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
 	if (!_isWired) {
-		for (GameObject* go : _elements) {
-			go->draw();
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		}
-
-	}else {
-		for (GameObject *go : _elements)
-			go->draw(_isWired);
+	else {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
+	for (GameObject* go : _elements) {
+	go->draw();
+	}
 	glPopMatrix();
 	glFlush();
 	glutPostRedisplay();

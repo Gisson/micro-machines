@@ -11,18 +11,6 @@ Butter::~Butter()
 {
 }
 
-void Butter::draw(bool isWired)
-{
-	glPushMatrix();
-	glLoadIdentity();
-	glColor3f(1.0, 1.0, 0.0);
-	glTranslatef(_xPosition, _yPosition, 3.2);
-	glScalef(0.2, 0.5, 0.2);
-	isWired==true? glutWireCube(1) :glutSolidCube(1);
-	glPopMatrix();
-
-}
-
 void Butter::draw()
 {
 	glPushMatrix();

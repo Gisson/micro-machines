@@ -6,7 +6,6 @@ class GameObject :Entity {
 public:
 	GameObject();
 	 virtual void draw()=0;
-	 virtual void draw(bool) = 0;
 	 virtual void update(double t)=0;
 };
 
