@@ -1,9 +1,10 @@
 #include "Orange.h"
 
+
 Orange::Orange()
 {
-	_xPosition = (((double)rand() / (RAND_MAX)) * 1.5);
-	_yPosition = (((double)rand() / (RAND_MAX)) * 1.5);
+	_xPosition = (((double)rand() / (RAND_MAX)) * 4.8) - 2.4;
+	_yPosition = (((double)rand() / (RAND_MAX)) * 4.8) - 2.4;
 }
 
 

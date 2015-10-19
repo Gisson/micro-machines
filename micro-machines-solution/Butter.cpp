@@ -17,7 +17,7 @@ void Butter::draw()
 	glLoadIdentity();
 	glColor3f(1.0, 1.0, 0.0);
 	glTranslatef(_xPosition, _yPosition, 3.2);
-	glScalef(0.2, 0.5, 0.2);
+	glScalef(BUTTER_SIZE_X, BUTTER_SIZE_Y, BUTTER_SIZE_X);
 	glutSolidCube(1);
 	glPopMatrix();
 
