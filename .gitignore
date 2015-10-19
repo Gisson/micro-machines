@@ -1,8 +1,14 @@
+
+#cpp stuff
 *.obj
 *.pdb
 *.ilk
+
+#visual studio
 *.idb
 *.log
 *.sdf
 *.sln
 *.vcxproj
+*.opensdf
+
