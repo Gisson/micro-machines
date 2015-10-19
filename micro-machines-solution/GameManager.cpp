@@ -111,6 +111,8 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 	else {
 		glOrtho(-WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE / ratio, WINDOW_SIZE / ratio, -WINDOW_SIZE, WINDOW_SIZE);
 	}
+	//gluLookAt(-10 , 0, 0, 0, 0, 0, 0, 1, 0);
+	//gluPerspective(45, ratio, 1, 1000);
 
 	
 
