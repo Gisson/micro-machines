@@ -5,7 +5,7 @@
 
 Game_manager::Game_manager() {
 	srand(time(NULL));
-	
+	_orthoCam = new OrthogonalCamera(-WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE);
 	_elements = std::vector<GameObject*>();
 	_table = new Table();
 	_elements.push_back(_table);
@@ -46,6 +46,16 @@ void Game_manager::keyPressed(unsigned char key, int x, int y)
 	case 'a':
 		_isWired == true ? _isWired = false : _isWired = true;
 		break;
+	case '1':
+		camera_number = 1;
+		break;
+	case '2':
+		camera_number = 2;
+		break;
+	case '3':
+		camera_number = 3;
+		break;
+
 	default:
 		std::cout << "Not supported" << std::endl;
 		break;
@@ -79,6 +89,7 @@ void Game_manager::init()
 void Game_manager::display() {
 	glPushMatrix();
 	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
@@ -91,7 +102,7 @@ void Game_manager::display() {
 	}
 
 	for (GameObject* go : _elements) {
-	go->draw();
+		go->draw();
 	}
 	glPopMatrix();
 	glFlush();
@@ -104,15 +115,31 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 	glLoadIdentity();
 	glViewport(VIEWPORT_X, VIEWPORT_Y, w, h);
 	GLfloat ratio = GLfloat(w) / GLfloat(h);
-	if (w > h) {
-		glOrtho(-WINDOW_SIZE*ratio, WINDOW_SIZE*ratio, -WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE);
+	if (camera_number == 1) {
+		if (w > h) {
+			_orthoCam->setLeft(-WINDOW_SIZE*ratio);
+			_orthoCam->setRight(WINDOW_SIZE*ratio);
+			_orthoCam->setBottom(-WINDOW_SIZE);
+			_orthoCam->setTop(WINDOW_SIZE);
+			_orthoCam->computeProjectionMatrix();
 
+		}
+		else {
+			_orthoCam->setLeft(-WINDOW_SIZE);
+			_orthoCam->setRight(WINDOW_SIZE);
+			_orthoCam->setBottom(-WINDOW_SIZE / ratio);
+			_orthoCam->setTop(WINDOW_SIZE / ratio);
+			_orthoCam->computeVisualizationMatrix();
+			_orthoCam->computeProjectionMatrix();
+		}
 	}
-	else {
-		glOrtho(-WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE / ratio, WINDOW_SIZE / ratio, -WINDOW_SIZE, WINDOW_SIZE);
+	else if(camera_number==2){
+		gluPerspective(45, ratio, -5, 5);
+		gluLookAt(1, -1, 6, 0, 0, 0, 0, 0, 1);
 	}
-	//gluLookAt(-10 , 0, 0, 0, 0, 0, 0, 1, 0);
-	//gluPerspective(45, ratio, 1, 1000);
+
+	
+	
 
 	
 

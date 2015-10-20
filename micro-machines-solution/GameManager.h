@@ -9,14 +9,15 @@
 #include "Table.h"
 #include "Car.h"
 #include "Roadside.h"
+#include "OrthogonalCamera.h"
 
 
 #define  ACELARATION_NUMBER  5.0
 #define  ANGLE_TURN  5.0
-#define  WINDOW_SIZE 5.0
 #define  ZERO		 0.0
 #define	 VIEWPORT_X  0.0
 #define  VIEWPORT_Y  0.0
+#define  WINDOW_SIZE 5.0
 
 
 	class Game_manager {
@@ -24,9 +25,11 @@
 		Table* _table;
 		Car* _vrum;
 		Roadside* _road;
+		OrthogonalCamera* _orthoCam;
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;
 		std::vector<GameObject*> _elements;
+		int camera_number = 1;
 	public:
 		Game_manager();
 		void display();

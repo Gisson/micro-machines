@@ -9,12 +9,15 @@ class OrthogonalCamera :Camera {
 private:
 	double _left, _right, _bottom, _top;
 public:
+	OrthogonalCamera(double left, double right, double bottom, double top, double near, double far);
+	~OrthogonalCamera();
 	void update();
 	void computeProjectionMatrix();
 	void computeVisualizationMatrix();
-	OrthogonalCamera(double fovy, double aspect, double near, double far);
-	~OrthogonalCamera();
-
+	void setLeft(double left);
+	void setRight(double right);
+	void setBottom(double bottom);
+	void setTop(double top);
 };
 
 
