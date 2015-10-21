@@ -3,6 +3,8 @@
 
 #include "GameObject.h"
 
+#define PI 3.14159265
+
 class DynamicObject : public GameObject {
 
 private:
@@ -16,6 +18,7 @@ public:
 	void update(double);
 	void setAcelaration(double);
 	void setSpeed(double);
+	void setPosition(double, double, double);
 	Vector3* getPosition();
 	double getAcelaration();
 	double getSpeed();

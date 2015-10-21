@@ -4,17 +4,21 @@
 #include "Camera.h"
 #include "Entity.h"
 
-class PerspectiveCamera :Camera {
+class PerspectiveCamera :public Camera {
 
 private:
 	double _fovy, _aspect;
+
 public:
-	void update();
-	void computeProjectionMatrix();
-	void computeVisualizationMatrix();
+	virtual void update();
+	virtual void computeProjectionMatrix();
+	virtual void computeVisualizationMatrix();
 	PerspectiveCamera(double fovy, double aspect, double near, double far);
 	~PerspectiveCamera();
-
+	void setFovy(double newFov);
+	double getFovy();
+	void setAspect(double newAspect);
+	double getAspect();
 };
 
 

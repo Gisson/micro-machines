@@ -3,7 +3,6 @@
 #include <cmath>
 #include "DynamicObject.h"
 
-#define PI 3.14159265
 
 DynamicObject::DynamicObject()
 {
@@ -17,23 +16,16 @@ DynamicObject::DynamicObject()
 
 void DynamicObject::update(double time)
 {
-	time = time / 1000;
-	if (_speed > 5)
-		setSpeed(5);
-	else if (_speed < -5)
-		setSpeed(-5);
-	else
-	{
-		setSpeed(getSpeed() + _acelaration*time);
-	}
 	
-	_position->set((_position->getX() + cos(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time) ,( _position->getY()  + sin(_angle* PI / 180)* getSpeed() * time + 0.5 * _acelaration * time *time), 0);
-	//std::cout << _speed << "aaa" << _position->getX() << std::endl;
 }
 
 void DynamicObject::setSpeed(double speed)
 {
 	_speed = speed;
+}
+
+void DynamicObject::setPosition(double x, double y, double z){
+	_position->set(x, y, z);
 }
 
 void DynamicObject::setAcelaration(double d)

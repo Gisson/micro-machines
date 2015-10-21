@@ -13,7 +13,7 @@ public:
 	virtual void update()=0;
 	virtual void computeProjectionMatrix()=0;
 	virtual void computeVisualizationMatrix()=0;
-protected:
+
 	double getNear();
 	double getFar();
 

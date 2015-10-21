@@ -2,7 +2,7 @@
 
 #include "PerspectiveCamera.h"
 
-class FollowCarCamera :PerspectiveCamera {
+class FollowCarCamera :public PerspectiveCamera {
 
 public:
 	FollowCarCamera(double fovy, double aspect, double near, double far);

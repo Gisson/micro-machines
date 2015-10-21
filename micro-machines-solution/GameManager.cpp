@@ -5,7 +5,16 @@
 
 Game_manager::Game_manager() {
 	srand(time(NULL));
+	glEnable(GL_DEPTH_TEST);
+
+	//Initializing cameras
+
 	_orthoCam = new OrthogonalCamera(-WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE);
+	_fullRoad = new SeeFullRoadCamera(FOVY,1,-3,3);
+	_followCar = new FollowCarCamera(90, 1, -3, 3);
+
+	//Initializing elements of the game
+
 	_elements = std::vector<GameObject*>();
 	_table = new Table();
 	_elements.push_back(_table);
@@ -79,6 +88,7 @@ void Game_manager::update(double delta)
 	for (GameObject* go : _elements) {
 		go->update(delta);
 	}
+
 	glutPostRedisplay();
 }
 
@@ -88,9 +98,26 @@ void Game_manager::init()
 
 void Game_manager::display() {
 	glPushMatrix();
-	glClear(GL_COLOR_BUFFER_BIT);
-	glClear(GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	switch (camera_number) {
+	case 1:
+		_orthoCam->computeProjectionMatrix();
+		break;
+	case 2:
+		_fullRoad->computeProjectionMatrix();
+		gluLookAt(0, -6, 10, 0, 0, 0, 0, 0, 1);
+		break;
+	case 3:
+		//gluLookAt(_vrum->getPosition()->getX()+1, _vrum->getPosition()->getY()+2, _vrum->getPosition()->getZ(), _vrum->getPosition()->getX(), _vrum->getPosition()->getY(), _vrum->getPosition()->getZ(),0,0,1);
+		break;
+	default:
+		break;
+
+	}
 	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
 	glLoadIdentity();
 	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
@@ -121,7 +148,7 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 			_orthoCam->setRight(WINDOW_SIZE*ratio);
 			_orthoCam->setBottom(-WINDOW_SIZE);
 			_orthoCam->setTop(WINDOW_SIZE);
-			_orthoCam->computeProjectionMatrix();
+			
 
 		}
 		else {
@@ -133,9 +160,11 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 			_orthoCam->computeProjectionMatrix();
 		}
 	}
-	else if(camera_number==2){
-		gluPerspective(45, ratio, -5, 5);
-		gluLookAt(1, -1, 6, 0, 0, 0, 0, 0, 1);
+	else if(camera_number==2 || camera_number==3){
+		camera_number == 2 ? _fullRoad->setAspect(ratio):_followCar->setAspect(ratio);
+		gluLookAt(0, -6, 10, 0, 0, 0, 0, 0, 1);
+
+		
 	}
 
 	

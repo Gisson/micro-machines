@@ -21,7 +21,22 @@ void PerspectiveCamera::computeVisualizationMatrix()
 {
 }
 
+void PerspectiveCamera::setFovy(double newFov) {
+	_fovy = newFov;
+}
+void PerspectiveCamera::setAspect(double newAspect) {
+	_aspect = newAspect;
+}
 
 PerspectiveCamera::~PerspectiveCamera()
 {
+}
+
+double PerspectiveCamera::getFovy() {
+	return _fovy;
+}
+
+
+double PerspectiveCamera::getAspect() {
+	return _aspect;
 }

@@ -2,7 +2,7 @@
 
 #include "PerspectiveCamera.h"
 
-class SeeFullRoadCamera :PerspectiveCamera {
+class SeeFullRoadCamera : public PerspectiveCamera {
 
 public:
 	SeeFullRoadCamera(double fovy, double aspect, double near, double far);

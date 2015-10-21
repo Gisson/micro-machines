@@ -9,6 +9,8 @@
 #include "Table.h"
 #include "Car.h"
 #include "Roadside.h"
+#include "SeeFullRoadCamera.h"
+#include "FollowCarCamera.h"
 #include "OrthogonalCamera.h"
 
 
@@ -18,7 +20,7 @@
 #define	 VIEWPORT_X  0.0
 #define  VIEWPORT_Y  0.0
 #define  WINDOW_SIZE 5.0
-
+#define  FOVY		 45
 
 	class Game_manager {
 	private:
@@ -26,6 +28,9 @@
 		Car* _vrum;
 		Roadside* _road;
 		OrthogonalCamera* _orthoCam;
+		FollowCarCamera *_followCar;
+		SeeFullRoadCamera *_fullRoad;
+
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;
 		std::vector<GameObject*> _elements;
