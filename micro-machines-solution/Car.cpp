@@ -2,8 +2,9 @@
 #include <math.h>
 #include "Car.h"
 
-Car::Car() : DynamicObject()
+Car::Car() :DynamicObject()
 {
+		setPosition(0, 0, 3.2);
 }
 
 void Car::update(double time) {
@@ -18,7 +19,7 @@ void Car::update(double time) {
 		setSpeed(getSpeed() + DynamicObject::getAcelaration()*time);
 	}
 
-	setPosition((DynamicObject::getPosition()->getX() + cos(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time), (getPosition()->getY() + sin(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time), 0);
+	setPosition((getPosition()->getX() + cos(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time), (getPosition()->getY() + sin(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time), getPosition()->getZ());
 	//std::cout << getSpeed() << "aaa" << getPosition()->getX() << std::endl;
 }
 
@@ -30,8 +31,8 @@ void Car::draw()
 	glLoadIdentity();
 
 	{
-		glTranslatef(getPosition()->getX(), getPosition()->getY(), 3.2);
-
+		glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ());
+		//std::cout << getPosition()->getZ() << std::endl;
 		glRotatef(getAngle(), 0, 0, 1);
 
 		//---------------------WHEELS---------------------
@@ -92,15 +93,33 @@ void Car::draw()
 		//--------------CAR BODY--------------------
 		glPushMatrix();
 		{
-			glTranslatef(0, 0, 0.25);
-			glColor3f(0, 1, 0);
-			glScalef(1.4, 1, 1);
-			glutSolidCube(0.4);
+
+			glTranslatef(0, 0, 0.1);
+			glPushMatrix();
+			glColor3f(0.9, 0.86, 0.25);
+			glTranslatef(0.5, 0, 0);
+			glRotatef(90, 0, 1, 0);
+			glRotatef(180, 1, 0, 0);
+			glutSolidCone(0.2, 0.5, 5, 5);
+			glPopMatrix();
+
+			glPushMatrix(); {
+				
+				glColor3f(0, 1, 0);
+				glScalef(1.4, 1, 0.5);
+				glutSolidCube(0.4);
+			}glPopMatrix();
 
 			//------------ROOFTOP------------------
-			glColor3f(1, 0, 1);
-			glScalef(1.4, 1.2, 0);
-			glutSolidCube(0.2);
+			glPushMatrix(); {
+				glColor3f(1, 0, 1);
+				glTranslatef(0, 0, 0.2);
+				glScalef(2, 1.2, 0.4);
+				glutSolidCube(0.2);
+			}glPopMatrix();
+
+
+
 		}glPopMatrix();
 
 	}

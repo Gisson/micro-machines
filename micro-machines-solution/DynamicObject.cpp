@@ -8,7 +8,7 @@ DynamicObject::DynamicObject()
 {
 	_speed = 0.0;
 	_acelaration = 0.0;
-	_position = new Vector3(0.0, 0.0, 0.0);
+	_position = new Vector3(0.0, 0.0, 0);
 	_angle = 0;
 	_dof = Vector3();
 
