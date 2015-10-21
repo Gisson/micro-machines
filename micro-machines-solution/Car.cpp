@@ -34,9 +34,7 @@ void Car::update(double time) {
 		deltaY = -3+BODY_SIZE;
 	}
 
-
 	setPosition(deltaX, deltaY, getPosition()->getZ());
-	//std::cout << getSpeed() << "aaa" << getPosition()->getX() << std::endl;
 }
 
 
