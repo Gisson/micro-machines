@@ -2,6 +2,7 @@
 #define __DYNAMICOBJECT_H__
 
 #include "GameObject.h"
+#include "StaticObject.h"
 
 #define PI 3.14159265
 

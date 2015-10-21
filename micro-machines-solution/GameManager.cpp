@@ -10,7 +10,7 @@ Game_manager::Game_manager() {
 
 	_orthoCam = new OrthogonalCamera(-WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE);
 	_fullRoad = new SeeFullRoadCamera(FOVY,1,-3,3);
-	_followCar = new FollowCarCamera(90, 1, -3, 3);
+	_followCar = new FollowCarCamera(FOVY, 1, -3, 3);
 
 	//Initializing elements of the game
 
@@ -108,7 +108,8 @@ void Game_manager::display() {
 		gluLookAt(0, -6, 10, 0, 0, 0, 0, 0, 1);
 		break;
 	case 3:
-		//gluLookAt(_vrum->getPosition()->getX()+1, _vrum->getPosition()->getY()+2, _vrum->getPosition()->getZ(), _vrum->getPosition()->getX(), _vrum->getPosition()->getY(), _vrum->getPosition()->getZ(),0,0,1);
+		_fullRoad->computeProjectionMatrix();
+		gluLookAt(_vrum->getPosition()->getX()+1, _vrum->getPosition()->getY(), _vrum->getPosition()->getZ()+4, _vrum->getPosition()->getX(), _vrum->getPosition()->getY(), _vrum->getPosition()->getZ(),0,0,1);
 		break;
 	default:
 		break;

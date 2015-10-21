@@ -8,7 +8,7 @@ DynamicObject::DynamicObject()
 {
 	_speed = 0.0;
 	_acelaration = 0.0;
-	_position = new Vector3(0.0, 0.0, 0.0);
+	_position = new Vector3(0.0, 0.0, 0);
 	_angle = 0;
 	_dof = Vector3();
 
@@ -78,4 +78,17 @@ Vector3 DynamicObject::getDof() {
 double DynamicObject::getAngle() {
 	return _angle;
 }
+
+
+//DEPRECATED
+/*bool DynamicObject::isOutOfTable(StaticObject* tab) {
+	if (_position->getX() > 3)
+		setPosition(3, _position->getY(), _position->getZ());
+	if (_position->getX() < -3)
+		setPosition(-3, _position->getY(), _position->getZ());
+	if (_position->getY() < -3)
+		setPosition(_position->getX(),-3 , _position->getZ());
+	if (_position->getY() > 3)
+		setPosition(_position->getX(), 3, _position->getZ());
+}*/
 

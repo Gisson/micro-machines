@@ -3,6 +3,10 @@
 #include "GameObject.h"
 #include "DynamicObject.h"
 
+#define BODY_SIZE 0.4
+#define WHEEL_RADIUS 0.05
+#define LIGHT_RANGE 0.5
+
 class Car : public DynamicObject {
 
 
