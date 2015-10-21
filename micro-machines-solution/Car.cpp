@@ -30,7 +30,7 @@ void Car::draw()
 	glLoadIdentity();
 
 	{
-		glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ());
+		glTranslatef(getPosition()->getX(), getPosition()->getY(), 3.2);
 
 		glRotatef(getAngle(), 0, 0, 1);
 
@@ -92,6 +92,7 @@ void Car::draw()
 		//--------------CAR BODY--------------------
 		glPushMatrix();
 		{
+			glTranslatef(0, 0, 0.25);
 			glColor3f(0, 1, 0);
 			glScalef(1.4, 1, 1);
 			glutSolidCube(0.4);

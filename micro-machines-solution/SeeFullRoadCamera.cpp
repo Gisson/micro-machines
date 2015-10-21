@@ -11,7 +11,7 @@ void SeeFullRoadCamera::update() {
 
 }
 void SeeFullRoadCamera::computeProjectionMatrix() {
-	std::cout << "Fovy: " << getFovy() << " Aspect: " << getAspect() << " Near: " << getNear() << " Far: " << getFar() << std::endl;
+	//std::cout << "Fovy: " << getFovy() << " Aspect: " << getAspect() << " Near: " << getNear() << " Far: " << getFar() << std::endl;
 	gluPerspective(getFovy(), getAspect(), getNear(), getFar());
 }
 

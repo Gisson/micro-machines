@@ -5,7 +5,6 @@
 
 Game_manager::Game_manager() {
 	srand(time(NULL));
-	glEnable(GL_DEPTH_TEST);
 
 	//Initializing cameras
 
@@ -70,7 +69,6 @@ void Game_manager::keyPressed(unsigned char key, int x, int y)
 		break;
 
 	}
-	glutPostRedisplay();
 
 }
 
