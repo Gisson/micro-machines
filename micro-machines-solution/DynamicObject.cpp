@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cmath>
 #include "DynamicObject.h"
@@ -63,12 +62,7 @@ void DynamicObject::breakAcelaration(int amount) {
 
 
 void DynamicObject::turn(double angle) {
-	_angle = (int)(_angle + angle) % 360;
-	/*if (_angle + angle > 359)
-		_angle -= 360;
-	else if (_angle + angle < 1)
-		_angle += 360;
-	_angle += angle;*/
+	_angle = fmod((_angle + angle) , 360);
 }
 
 

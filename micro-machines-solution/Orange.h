@@ -5,12 +5,13 @@
 #include <time.h>
 #include "Obstacle.h"
 
+#define ORANGE_RADIUS 0.2
+
 class Orange : public Obstacle {
-private:
-	double _xPosition, _yPosition;
 public:
 	Orange();
 	void draw();
+	void update(double);
 };
 
 #endif

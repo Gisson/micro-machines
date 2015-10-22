@@ -19,10 +19,10 @@ Game_manager::Game_manager() {
 	_elements.push_back(_table);
 	_road = new Roadside();
 	_elements.push_back(_road);
-	for (int i = 0;i < 20;i++) {
+	for (int i = 0;i < ORANGE_NR;i++) {
 		_elements.push_back(new Orange());
 	}
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < BUTTER_NR; i++) {
 		_elements.push_back(new Butter());
 	}
 	_vrum = new Car();

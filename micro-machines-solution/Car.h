@@ -2,6 +2,7 @@
 #define __CAR_H__
 #include "GameObject.h"
 #include "DynamicObject.h"
+#include <math.h>
 
 #define BODY_SIZE 0.4
 #define WHEEL_RADIUS 0.05
