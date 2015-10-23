@@ -59,9 +59,11 @@ void Game_manager::keyPressed(unsigned char key, int x, int y)
 		break;
 	case '2':
 		camera_number = 2;
+		_fullRoad->computeProjectionMatrix();
 		break;
 	case '3':
 		camera_number = 3;
+		_followCar->computeProjectionMatrix();
 		break;
 
 	default:
@@ -108,7 +110,7 @@ void Game_manager::display() {
 		gluLookAt(0, -6, 10, 0, 0, 0, 0, 0, 1);
 		break;
 	case 3:
-		_fullRoad->computeProjectionMatrix();
+		_followCar->computeProjectionMatrix();
 		gluLookAt(_vrum->getPosition()->getX()+1, _vrum->getPosition()->getY(), _vrum->getPosition()->getZ()+4, _vrum->getPosition()->getX(), _vrum->getPosition()->getY(), _vrum->getPosition()->getZ(),0,0,1);
 		break;
 	default:
@@ -155,13 +157,10 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 			_orthoCam->setRight(WINDOW_SIZE);
 			_orthoCam->setBottom(-WINDOW_SIZE / ratio);
 			_orthoCam->setTop(WINDOW_SIZE / ratio);
-			_orthoCam->computeVisualizationMatrix();
-			_orthoCam->computeProjectionMatrix();
 		}
 	}
 	else if(camera_number==2 || camera_number==3){
 		camera_number == 2 ? _fullRoad->setAspect(ratio):_followCar->setAspect(ratio);
-		gluLookAt(0, -6, 10, 0, 0, 0, 0, 0, 1);
 
 		
 	}

@@ -35,11 +35,27 @@ void Orange::update(double time)
 	deltaX +=  getSpeed() * time ;
 	turn( (getSpeed() * time / (2 * PI * ORANGE_RADIUS))*360);
 
-	std::cout << getAngle() << std::endl;
+	//std::cout << getAngle() << std::endl;
 	DynamicObject::update(time);
-
-	if (deltaX + ORANGE_RADIUS > 3) {
+	if (deltaZ <= -3) {
 		deltaX = -3 + ORANGE_RADIUS;
+		deltaZ = 5;
 	}
+	else if (deltaZ > 3.2) {
+		deltaZ -= 0.2;
+	}
+	if (deltaX + ORANGE_RADIUS > 3) {
+		deltaZ -=0.2;
+	}
+	if (deltaX - ORANGE_RADIUS < -3) {
+		deltaZ -= 0.2;
+	}
+	if (deltaY + ORANGE_RADIUS > 3) {
+		deltaZ -= 0.2;
+	}
+	if (deltaY - ORANGE_RADIUS < -3) {
+		deltaZ -= 0.2;
+	}
+	std::cout << deltaZ << std::endl;
 	setPosition(deltaX, deltaY, deltaZ);
 }
