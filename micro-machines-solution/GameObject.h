@@ -2,6 +2,8 @@
 #define __GAMEOBJECT_H__
 #include "Entity.h"
 
+#define TABLE_SIZE 3
+
 class GameObject :Entity {
 public:
 	GameObject();

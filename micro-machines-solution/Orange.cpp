@@ -6,7 +6,7 @@ Orange::Orange()
 	double _xPosition, _yPosition , _ZPosition;
 	_xPosition = (((double)rand() / (RAND_MAX)) * 4.8) - 2.4;
 	_yPosition = (((double)rand() / (RAND_MAX)) * 4.8) - 2.4;
-	_ZPosition = 3.2;
+	_ZPosition = TABLE_SIZE+ORANGE_RADIUS;
 	setPosition(_xPosition, _yPosition, _ZPosition);
 }
 
@@ -37,23 +37,23 @@ void Orange::update(double time)
 
 	//std::cout << getAngle() << std::endl;
 	DynamicObject::update(time);
-	if (deltaZ <= -3) {
-		deltaX = -3 + ORANGE_RADIUS;
+	if (deltaZ <= -TABLE_SIZE) {
+		deltaX = -TABLE_SIZE + ORANGE_RADIUS;
 		deltaZ = 5;
 	}
-	else if (deltaZ > 3.2) {
+	else if (deltaZ > TABLE_SIZE+ORANGE_RADIUS) {
 		deltaZ -= 0.2;
 	}
-	if (deltaX + ORANGE_RADIUS > 3) {
+	if (deltaX + ORANGE_RADIUS > TABLE_SIZE) {
 		deltaZ -=0.2;
 	}
-	if (deltaX - ORANGE_RADIUS < -3) {
+	if (deltaX - ORANGE_RADIUS < -TABLE_SIZE) {
 		deltaZ -= 0.2;
 	}
-	if (deltaY + ORANGE_RADIUS > 3) {
+	if (deltaY + ORANGE_RADIUS > TABLE_SIZE) {
 		deltaZ -= 0.2;
 	}
-	if (deltaY - ORANGE_RADIUS < -3) {
+	if (deltaY - ORANGE_RADIUS < -TABLE_SIZE) {
 		deltaZ -= 0.2;
 	}
 	std::cout << deltaZ << std::endl;
