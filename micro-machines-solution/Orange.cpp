@@ -4,17 +4,12 @@
 Orange::Orange()
 {
 	double _xPosition, _yPosition , _ZPosition;
-<<<<<<< HEAD
 	_xPosition = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 	_yPosition = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 	_ZPosition = 5;
 	turn(((double)rand() / (RAND_MAX)) * 360);
 	setSpeed(0.5 + (double)rand() / (RAND_MAX)* 2);
-=======
-	_xPosition = (((double)rand() / (RAND_MAX)) * 4.8) - 2.4;
-	_yPosition = (((double)rand() / (RAND_MAX)) * 4.8) - 2.4;
-	_ZPosition = TABLE_SIZE+ORANGE_RADIUS;
->>>>>>> eaa2027d8d434ad79fa86740c98a1d4b5e5207be
+
 	setPosition(_xPosition, _yPosition, _ZPosition);
 }
 
@@ -46,20 +41,13 @@ void Orange::update(double time)
 
 	//std::cout << getAngle() << std::endl;
 	DynamicObject::update(time);
-<<<<<<< HEAD
-
 	if (deltaZ <= -3) {
 		deltaX = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 		deltaY = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
-=======
-	if (deltaZ <= -TABLE_SIZE) {
-		deltaX = -TABLE_SIZE + ORANGE_RADIUS;
->>>>>>> eaa2027d8d434ad79fa86740c98a1d4b5e5207be
 		deltaZ = 5;
 		setSpeed(0.5 + (double)rand() / (RAND_MAX) * 2);
 		setPosition(deltaX, deltaY, deltaZ);
 	}
-<<<<<<< HEAD
 	else if (deltaZ > 3.2) {
 		deltaZ -= 0.1;
 	}
@@ -75,22 +63,6 @@ void Orange::update(double time)
 	}
 	if (deltaY < -3) {
 		deltaZ -= 0.1;
-=======
-	else if (deltaZ > TABLE_SIZE+ORANGE_RADIUS) {
-		deltaZ -= 0.2;
-	}
-	if (deltaX + ORANGE_RADIUS > TABLE_SIZE) {
-		deltaZ -=0.2;
-	}
-	if (deltaX - ORANGE_RADIUS < -TABLE_SIZE) {
-		deltaZ -= 0.2;
-	}
-	if (deltaY + ORANGE_RADIUS > TABLE_SIZE) {
-		deltaZ -= 0.2;
-	}
-	if (deltaY - ORANGE_RADIUS < -TABLE_SIZE) {
-		deltaZ -= 0.2;
->>>>>>> eaa2027d8d434ad79fa86740c98a1d4b5e5207be
 	}
 	std::cout << deltaZ << std::endl;
 	setPosition(deltaX, deltaY, deltaZ);
