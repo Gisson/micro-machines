@@ -28,6 +28,9 @@ void update(int value) {
 	glutTimerFunc(10, update, 10);
 }
 
+void specialUp(int key, int x, int y) {
+	gm->specialKeyUp(key,x,y);
+}
 
 
 int main(int argc, char** argv) {
@@ -41,6 +44,7 @@ int main(int argc, char** argv) {
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
+	glutSpecialUpFunc(specialUp);
 	glutSpecialFunc(specialKeyPressed);
 	glutKeyboardFunc(keyPressed);
 	glutTimerFunc(10, update, 10);

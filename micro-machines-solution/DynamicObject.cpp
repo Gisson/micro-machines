@@ -10,6 +10,7 @@ DynamicObject::DynamicObject()
 	_position = new Vector3(0.0, 0.0, 0);
 	_angle = 0;
 	_dof = Vector3();
+	//_hitBox= new Vector3(_position->getX(),_position->getY(),_position->getZ(),)
 
 }
 

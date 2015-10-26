@@ -2,6 +2,12 @@
 
 Roadside::Roadside()
 {
+	for (int i = 0;i < CHEERIO_NR_IN;i++) {
+		cereals_in[i] = new Cheerio();
+	}
+	for (int i = 0;i < CHEERIO_NR_OUT;i++) {
+		cereals_out[i] = new Cheerio();
+	}
 
 }
 
@@ -15,19 +21,19 @@ void Roadside::draw()
 	glPushMatrix();
 	glLoadIdentity();
 	glColor3f(0.4f, 0.6f, 0.0f);
-	for (int i = 0; i < 40; i++) {
+	for (int i = 0; i < CHEERIO_NR_OUT; i++) {
 		glPushMatrix();
 		glRotatef(9 * i, 0, 0, 1);
 		glTranslatef(3 - 0.25, 0, 3);
-		glutSolidTorus(0.01, 0.05, 4, 20);
+		cereals_in[i]->draw();
 		glPopMatrix();
 	}
 
-	for (int i = 0; i < 60; i++) {
+	for (int i = 0; i < CHEERIO_NR_IN; i++) {
 		glPushMatrix();
-		glRotatef(6 * i, 0, 0, 1);
+		glRotatef(9 * i, 0, 0, 1);
 		glTranslatef(1.0, 0, 3);
-		glutSolidTorus(0.01, 0.05, 4, 20);
+		cereals_out[i]->draw();
 		glPopMatrix();
 	}
 	glPopMatrix();

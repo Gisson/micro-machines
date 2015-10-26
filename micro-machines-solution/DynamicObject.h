@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "StaticObject.h"
+#include "HitBox.h"
 
 #define PI 3.14159265
 
@@ -12,6 +13,7 @@ private:
 	Vector3 *_position,_dof;
 	double _acelaration , _speed,_angle;
 	bool _is_acelarating;
+	HitBox *_hitBox;
 	
 
 public:

@@ -35,18 +35,41 @@ void Game_manager::specialKeyPressed(int key, int x, int y)
 	switch (key)
 	{
 	case GLUT_KEY_UP:
+		keyUp = true;
 		_vrum->acelarate(ACELARATION_NUMBER);
 		break;
 	case GLUT_KEY_DOWN:
+		keyDown = true;
 		_vrum->breakAcelaration(-ACELARATION_NUMBER);
 		break;
 	case GLUT_KEY_LEFT:
+		keyLeft = true;
 		_vrum->turn(ANGLE_TURN);
 		break;
 	case GLUT_KEY_RIGHT:
+		keyRight = true;
 		_vrum->turn(-ANGLE_TURN);
 		break;
 	}
+}
+void Game_manager::specialKeyUp(int key, int x, int y)
+{
+	switch (key)
+	{
+	case GLUT_KEY_UP:
+		keyUp = false;
+		break;
+	case GLUT_KEY_DOWN:
+		keyDown = false;
+		break;
+	case GLUT_KEY_LEFT:
+		keyLeft = false;
+		break;
+	case GLUT_KEY_RIGHT:
+		keyRight = false;
+		break;
+	}
+
 }
 void Game_manager::keyPressed(unsigned char key, int x, int y)
 {
@@ -85,6 +108,18 @@ void Game_manager::idle()
 
 void Game_manager::update(double delta)
 {
+	if (keyUp) {
+		_vrum->acelarate(ACELARATION_NUMBER);
+	}
+	if (keyDown) {
+		_vrum->breakAcelaration(-ACELARATION_NUMBER);
+	}
+	if (keyLeft) {
+		_vrum->turn(ANGLE_TURN);
+	}
+	if (keyRight) {
+		_vrum->turn(-ANGLE_TURN);
+	}
 	for (GameObject* go : _elements) {
 		go->update(delta);
 	}

@@ -15,7 +15,7 @@
 
 
 #define  ACELARATION_NUMBER  5.0
-#define  ANGLE_TURN  5.0
+#define  ANGLE_TURN  2.0
 #define  ZERO		 0.0
 #define	 VIEWPORT_X  0.0
 #define  VIEWPORT_Y  0.0
@@ -32,6 +32,7 @@
 		OrthogonalCamera* _orthoCam;
 		FollowCarCamera *_followCar;
 		SeeFullRoadCamera *_fullRoad;
+		bool keyUp=false,keyDown=false,keyRight=false,keyLeft=false;
 
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;
@@ -42,6 +43,7 @@
 		void display();
 		void reshape(GLsizei h,GLsizei w);
 		void specialKeyPressed(int key, int x, int y);
+		void specialKeyUp(int key,int x,int y);
 		void onTimer();
 		void idle();
 		void update(double delta);

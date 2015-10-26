@@ -7,6 +7,7 @@
 
 #define ORANGE_RADIUS 0.2
 #define SPAWN_TIME 5
+#define MAX_SPEED 4
 
 class Orange : public Obstacle {
 private:
