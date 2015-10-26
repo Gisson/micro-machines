@@ -111,7 +111,9 @@ void Game_manager::display() {
 		break;
 	case 3:
 		_followCar->computeProjectionMatrix();
-		gluLookAt(_vrum->getPosition()->getX()-1, _vrum->getPosition()->getY(), _vrum->getPosition()->getZ()+3, _vrum->getPosition()->getX(), _vrum->getPosition()->getY(), _vrum->getPosition()->getZ(),0,0,1);
+		gluLookAt(_vrum->getPosition()->getX() + cos(_vrum->getAngle()*PI / 180) * -3, _vrum->getPosition()->getY() + sin(_vrum->getAngle()*PI / 180) * -3, _vrum->getPosition()->getZ()+3,
+			_vrum->getPosition()->getX(), _vrum->getPosition()->getY(), _vrum->getPosition()->getZ(),
+			0, 0,1);
 		break;
 	default:
 		break;

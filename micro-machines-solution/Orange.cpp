@@ -4,6 +4,7 @@
 Orange::Orange()
 {
 	double _xPosition, _yPosition , _ZPosition;
+	_spawn_time = SPAWN_TIME;
 	_xPosition = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 	_yPosition = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 	_ZPosition = 5;
@@ -29,6 +30,9 @@ void Orange::draw()
 void Orange::update(double time)
 {
 	float deltaX, deltaY, deltaZ;
+	if (_spawn_time <= 0)
+		_spawn_time = SPAWN_TIME;
+		
 	deltaX = getPosition()->getX();
 	deltaY = getPosition()->getY();
 	deltaZ = getPosition()->getZ();
@@ -42,11 +46,15 @@ void Orange::update(double time)
 	//std::cout << getAngle() << std::endl;
 	DynamicObject::update(time);
 	if (deltaZ <= -3) {
-		deltaX = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
-		deltaY = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
-		deltaZ = 5;
-		setSpeed(0.5 + (double)rand() / (RAND_MAX) * 2);
-		setPosition(deltaX, deltaY, deltaZ);
+		_spawn_time -= time;
+		std::cout << _spawn_time << std::endl;
+		if (_spawn_time <= 0) {
+			deltaX = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
+			deltaY = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
+			deltaZ = 5;
+			setSpeed(0.5 + (double)rand() / (RAND_MAX)* 2);
+			setPosition(deltaX, deltaY, deltaZ);
+		}
 	}
 	else if (deltaZ > 3.2) {
 		deltaZ -= 0.1;
@@ -64,7 +72,7 @@ void Orange::update(double time)
 	if (deltaY < -3) {
 		deltaZ -= 0.1;
 	}
-	std::cout << deltaZ << std::endl;
+	//std::cout << deltaZ << std::endl;
 	setPosition(deltaX, deltaY, deltaZ);
 }
 

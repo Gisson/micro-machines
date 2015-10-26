@@ -6,10 +6,11 @@
 #include "Obstacle.h"
 
 #define ORANGE_RADIUS 0.2
+#define SPAWN_TIME 5
 
 class Orange : public Obstacle {
 private:
-	double _angle_z;
+	double _angle_z,_spawn_time;
 public:
 	Orange();
 	void draw();
