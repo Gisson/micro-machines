@@ -5,6 +5,8 @@
 #include "StaticObject.h"
 #include "HitBox.h"
 
+#define CAR_MAX_SPEED 5
+
 #define PI 3.14159265
 
 class DynamicObject : public GameObject {

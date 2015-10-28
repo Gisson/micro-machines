@@ -3,10 +3,10 @@
 Roadside::Roadside():StaticObject()
 {
 	for (int i = 0;i < CHEERIO_NR_IN;i++) {
-		cereals_in[i] = new Cheerio(cos((9 * i * PI) / 180), sin((9 * i * PI) / 180), 3.2);
+		cereals_in[i] = new Cheerio(cos((9 * i * PI) / 180), sin((9 * i * PI) / 180), TABLE_SIZE/2);
 	}
 	for (int i = 0;i < CHEERIO_NR_OUT;i++) {
-		cereals_out[i] = new Cheerio((3 - 0.25)*cos((9 * i * PI) / 180), (3 - 0.25)*sin((9 * i * PI) / 180), 3);
+		cereals_out[i] = new Cheerio((TABLE_SIZE/2 - LIMIT)*cos((9 * i * PI) / 180), (TABLE_SIZE/2 - LIMIT)*sin((9 * i * PI) / 180), TABLE_SIZE/2);
 		//std::cout << "X: " << cereals_out[i]->getPosition()->getX() << " Y: " << cereals_out[i]->getPosition()->getY() << " Z: " << cereals_out[i]->getPosition()->getZ() << std::endl;
 	}
 

@@ -7,9 +7,9 @@ Orange::Orange():Obstacle()
 	_spawn_time = SPAWN_TIME;
 	_xPosition = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 	_yPosition = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
-	_ZPosition = 5;
+	_ZPosition = FALL_HEIGHT;
 	turn(((double)rand() / (RAND_MAX)) * 360);
-	setSpeed(0.5 + (double)rand() / (RAND_MAX));
+	setSpeed(MIN_SPEED + (double)rand() / (RAND_MAX));
 
 	setPosition(_xPosition, _yPosition, _ZPosition);
 	getHitBox()->setPosition(_xPosition, _yPosition, _ZPosition);
@@ -48,40 +48,40 @@ void Orange::update(double time)
 
 	//std::cout << getAngle() << std::endl;
 	DynamicObject::update(time);
-	if (deltaZ <= -3) {
+	if (deltaZ <= -TABLE_SIZE/2) {
 		_spawn_time -= time;
 		//std::cout << _spawn_time << std::endl;
 		if (_spawn_time <= 0) {
 			deltaX = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 			deltaY = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 			deltaZ = 5;
-			setSpeed(0.5 + (double)rand() / (RAND_MAX));
+			setSpeed(MIN_SPEED + (double)rand() / (RAND_MAX));
 			setPosition(deltaX, deltaY, deltaZ);
 			getHitBox()->setPosition(deltaX, deltaY, deltaZ);
 		}
 	}
-	else if (deltaZ > 3.2) {
+	else if (deltaZ > TABLE_SIZE/2 +ORANGE_RADIUS) {
 		deltaZ -= 0.1;
 	}
 
-	if (deltaX > 3) {
+	if (deltaX > TABLE_SIZE/2) {
 		deltaZ -=0.1;
-		deltaX = 500;
+		deltaX = OUT_OF_RANGE;
 	}
-	if (deltaX < -3) {
-		deltaZ -= 0.1;
-		deltaX = -500;
+	if (deltaX < -TABLE_SIZE/2) {
+		deltaZ -= FALL_FACTOR;
+		deltaX = -OUT_OF_RANGE;
 	}
-	if (deltaY > 3) {
-		deltaZ -= 0.1;
-		deltaY = 500;
+	if (deltaY > TABLE_SIZE/2) {
+		deltaZ -= FALL_FACTOR;
+		deltaY = OUT_OF_RANGE;
 
 	}
-	if (deltaY < -3) {
-		deltaZ -= 0.1;
+	if (deltaY < -TABLE_SIZE/2) {
+		deltaZ -= FALL_FACTOR;
 	}
 	if(getSpeed()<MAX_SPEED)
-		setSpeed(getSpeed() + 0.01);
+		setSpeed(getSpeed() + ORANGE_SPEEDUP_FACTOR);
 	//std::cout << deltaZ << std::endl;
 	setPosition(deltaX, deltaY, deltaZ);
 	getHitBox()->setPosition(deltaX, deltaY, deltaZ);
@@ -103,7 +103,7 @@ bool Orange::checkHit(GameObject* object)
 	//std::cout << "xCARRO : " << object->getHitBox()->getPosition()->getX() << " yCARRO: " << object->getHitBox()->getPosition()->getY() << " zCARRO: " << object->getHitBox()->getPosition()->getZ()<< std::endl;
 
 	if (GameObject::checkHit(object)) {
-		object->setPosition(0, 0, 3.2);
+		object->setPosition(0, 0, TABLE_SIZE/2+ORANGE_RADIUS);
 		((DynamicObject*)object)->setSpeed(0);
 		((DynamicObject*)object)->setAcelaration(0);
 	}

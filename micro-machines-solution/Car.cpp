@@ -3,8 +3,8 @@
 
 Car::Car() :DynamicObject()
 {
-		setPosition(0, 0, 3.2);
-		getHitBox()->setPosition(0, 0, 3.2);
+		setPosition(0, 0, (TABLE_SIZE/2)+WHEEL_RADIUS);
+		getHitBox()->setPosition(0, 0, TABLE_SIZE / 2 + WHEEL_RADIUS);
 		getHitBox()->setRadius(BODY_SIZE);
 }
 
@@ -15,28 +15,28 @@ void Car::update(double time) {
 	double deltaY = (getPosition()->getY() + sin(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time);
 	double deltaZ = getPosition()->getZ();
 	setSpeed(getSpeed() + getAcelaration()*time);
-	if (deltaX + BODY_SIZE > 3 || deltaX - BODY_SIZE < -3 || deltaY + BODY_SIZE > 3 || deltaY - BODY_SIZE < -3) {
-		if (deltaX + BODY_SIZE > 3) {
-			deltaX = 3 - BODY_SIZE;
+	if (deltaX + BODY_SIZE > TABLE_SIZE/2 || deltaX - BODY_SIZE < -TABLE_SIZE/2 || deltaY + BODY_SIZE > TABLE_SIZE/2 || deltaY - BODY_SIZE < -TABLE_SIZE/2) {
+		if (deltaX + BODY_SIZE > TABLE_SIZE/2) {
+			deltaX = TABLE_SIZE/2 - BODY_SIZE;
 		}
-		if (deltaX - BODY_SIZE < -3) {
-			deltaX = -3 + BODY_SIZE;
+		if (deltaX - BODY_SIZE < -TABLE_SIZE/2) {
+			deltaX = -TABLE_SIZE/2 + BODY_SIZE;
 		}
-		if (deltaY + BODY_SIZE > 3) {
-			deltaY = 3 - BODY_SIZE;
+		if (deltaY + BODY_SIZE > TABLE_SIZE/2) {
+			deltaY = TABLE_SIZE/2 - BODY_SIZE;
 		}
-		if (deltaY - BODY_SIZE < -3) {
-			deltaY = -3 + BODY_SIZE;
+		if (deltaY - BODY_SIZE < -TABLE_SIZE/2) {
+			deltaY = -TABLE_SIZE/2 + BODY_SIZE;
 		}
 		setPosition(deltaX, deltaY, deltaZ);
 		getHitBox()->setPosition(deltaX, deltaY, deltaZ);
 	}
 	else
 		DynamicObject::update(time);
-	if (DynamicObject::getSpeed() > 5)
-		setSpeed(5);
-	else if (DynamicObject::getSpeed() < -5)
-		setSpeed(-5);
+	if (DynamicObject::getSpeed() > CAR_MAX_SPEED)
+		setSpeed(CAR_MAX_SPEED);
+	else if (DynamicObject::getSpeed() < -CAR_MAX_SPEED)
+		setSpeed(-CAR_MAX_SPEED);
 	else
 	{
 		setSpeed(getSpeed() + DynamicObject::getAcelaration()*time);
@@ -119,7 +119,7 @@ void Car::draw()
 		{
 
 			glTranslatef(0, 0, WHEEL_RADIUS);
-			
+			/*
 			//----FRONT LIGHT....OR SOMETHING
 			{glPushMatrix();
 			glColor3f(0.9, 0.86, 0.25);
@@ -129,7 +129,7 @@ void Car::draw()
 			glutSolidCone(0.2, LIGHT_RANGE, 5, 5);
 			glPopMatrix();
 
-			}glPushMatrix(); {
+			}*/glPushMatrix(); {
 				
 				glColor3f(0, 1, 0);
 				glScalef(1, 1, 0.5);

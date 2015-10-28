@@ -7,7 +7,7 @@
 
 #define CHEERIO_NR_OUT 60
 #define CHEERIO_NR_IN 40
-
+#define LIMIT		  0.25
 class Roadside : public StaticObject {
 private:
 	Cheerio *cereals_in[CHEERIO_NR_IN];
