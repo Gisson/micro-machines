@@ -9,12 +9,15 @@ GameObject::GameObject() {
 
 bool GameObject::checkHit(GameObject *object)
 {
-	int position1 = getHitBox()->getPosition()->norm();
-	int position2 = object->getHitBox()->getPosition()->norm();
-	position1 = position1 - position2;
-	position2 = pow(getHitBox()->getRadius() + object->getHitBox()->getRadius() , 2);
-	if (position1 <= position2)
+	Vector3 resultV= (*(getHitBox()->getPosition()) - *(object->getHitBox()->getPosition()));
+	double distance = resultV.norm();
+	double radSum = pow(getHitBox()->getRadius() + object->getHitBox()->getRadius(),2);
+	//std::cout << "xRES : " << resultV.getX()<<" yRES: "<<resultV.getY()<<" zRES: "<<resultV.getZ()<<" NORM: "<<distance <<" RAD SUM: "<<radSum << std::endl;
+
+	if (distance <= radSum) {
+
 		return true;
+	}
 	return false;
 }
 

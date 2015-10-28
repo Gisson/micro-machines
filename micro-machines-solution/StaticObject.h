@@ -10,6 +10,7 @@ public:
 	~StaticObject();
 	void draw();
 	void update(double t);
+	bool isCar() { return false; }
 
 
 };

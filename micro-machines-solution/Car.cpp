@@ -5,7 +5,7 @@ Car::Car() :DynamicObject()
 {
 		setPosition(0, 0, 3.2);
 		getHitBox()->setPosition(0, 0, 3.2);
-		getHitBox()->setRadius(BODY_SIZE*sqrt(3)/2);
+		getHitBox()->setRadius(BODY_SIZE);
 }
 
 void Car::update(double time) {
@@ -40,6 +40,7 @@ void Car::update(double time) {
 	}
 
 	setPosition(deltaX, deltaY, deltaZ);
+	getHitBox()->setPosition(deltaX, deltaY, deltaZ);
 }
 
 
@@ -146,4 +147,9 @@ void Car::draw()
 	}
 	glPopMatrix();
 
+}
+
+bool Car::checkHit(GameObject *)
+{
+	return false;
 }

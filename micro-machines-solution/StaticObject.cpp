@@ -2,7 +2,7 @@
 
 //FIXME 
 
-StaticObject::StaticObject()
+StaticObject::StaticObject():GameObject()
 {
 }
 

@@ -16,6 +16,8 @@ public:
 	Car();
 	void update(double delta);
 	void draw();
+	bool checkHit(GameObject*) override;
+	bool isCar() override { return true; }
 };
 
 #endif

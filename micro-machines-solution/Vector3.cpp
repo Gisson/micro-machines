@@ -27,9 +27,9 @@ double Vector3::getZ()
 	return _z;
 }
 
-int Vector3::norm()
+double Vector3::norm()
 {
-	return pow(getX(), 2) + pow(getY(), 2) + pow(getZ(), 2);
+	return (pow(getX(), 2)) + pow(getY(), 2) + pow(getZ(), 2);
 }
 
 void Vector3::set(double x, double y, double z)

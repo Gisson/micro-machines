@@ -20,6 +20,7 @@ public:
 
 	virtual void draw()=0;
 	virtual void update(double t)=0;
+	virtual bool isCar()=0;
 
 };
 

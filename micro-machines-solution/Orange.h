@@ -17,6 +17,7 @@ public:
 	void update(double);
 	void setAngle_z(double);
 	double getAngle_z();
+	bool checkHit(GameObject*)override;
 };
 
 #endif

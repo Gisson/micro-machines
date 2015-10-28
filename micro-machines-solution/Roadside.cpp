@@ -1,6 +1,6 @@
 #include "Roadside.h"
 
-Roadside::Roadside()
+Roadside::Roadside():StaticObject()
 {
 	for (int i = 0;i < CHEERIO_NR_IN;i++) {
 		cereals_in[i] = new Cheerio(cos((9 * i * PI) / 180), sin((9 * i * PI) / 180), 3.2);
@@ -56,7 +56,7 @@ bool Roadside::checkHit(GameObject *object)
 		position1 = position1 - position2;
 		position2 = pow(getHitBox()->getRadius() + object->getHitBox()->getRadius(), 2);
 		if (position1 <= position2) {
-			std::cout << "TRUE" << std::endl;
+			//std::cout << "TRUE" << std::endl;
 			return true;
 
 		}
@@ -67,11 +67,11 @@ bool Roadside::checkHit(GameObject *object)
 		position1 = position1 - position2;
 		position2 = pow(getHitBox()->getRadius() + object->getHitBox()->getRadius(), 2);
 		if (position1 <= position2) {
-			std::cout << "TRUE" << std::endl;
+			//std::cout << "TRUE" << std::endl;
 			return true;
 		}
 	}
-	std::cout << "FALSE" << std::endl;
+	//std::cout << "FALSE" << std::endl;
 
 	return false;
 

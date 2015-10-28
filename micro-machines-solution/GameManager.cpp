@@ -18,7 +18,7 @@ Game_manager::Game_manager() {
 	_table = new Table();
 	_elements.push_back(_table);
 	_road = new Roadside();
-	_elements.push_back(_road);
+	//_elements.push_back(_road);
 	for (int i = 0;i < ORANGE_NR;i++) {
 		_elements.push_back(new Orange());
 	}
@@ -120,16 +120,21 @@ void Game_manager::update(double delta)
 	if (keyRight) {
 		_vrum->turn(-ANGLE_TURN);
 	}
+
 	for (std::vector<GameObject*>::iterator it = _elements.begin(); it != _elements.end(); ++it) {
-		for (std::vector<GameObject*>::iterator jt = it; jt != _elements.end(); ++jt) {
+		/*for (std::vector<GameObject*>::iterator jt = it; jt != _elements.end(); ++jt) {
+			std::cout << "for IT: " << (*it)->getPosition()->getX() << " " << (*it)->getPosition()->getY() << " RADIUS IT: " << (*it)->getHitBox()->getRadius() << " FOR JT:" << (*jt)->getPosition()->getX() << " " << (*jt)->getPosition()->getY() << " RADIUS JT: " << (*jt)->getHitBox()->getRadius() << std::endl;
+
 			if ((*it)->checkHit(*jt) && (*it)!=(*jt)) {
-				std::cout << "for IT: "<<(*it)->getPosition()->getX()<<" "<<(*it)->getPosition()->getY()<<" RADIUS IT: "<<(*it)->getHitBox()->getRadius()<<" FOR JT:"<<(*jt)->getPosition()->getX()<<" "<<(*jt)->getPosition()->getY() << " RADIUS JT: " << (*jt)->getHitBox()->getRadius()<< std::endl;
 			}
-		}
+		}*/
 		(*it)->update(delta);
 	}
+	for (std::vector<GameObject*>::iterator it = _elements.begin(); it != _elements.end(); ++it) {
+		(*it)->checkHit(_vrum);
 
-	glutPostRedisplay();
+
+	}
 }
 
 void Game_manager::init()

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Orange.h"
 
-Orange::Orange()
+Orange::Orange():Obstacle()
 {
 	double _xPosition, _yPosition , _ZPosition;
 	_spawn_time = SPAWN_TIME;
@@ -12,6 +12,9 @@ Orange::Orange()
 	setSpeed(0.5 + (double)rand() / (RAND_MAX));
 
 	setPosition(_xPosition, _yPosition, _ZPosition);
+	getHitBox()->setPosition(_xPosition, _yPosition, _ZPosition);
+	std::cout <<"INITIAL X: " <<_xPosition<<" Y: "<<_yPosition<<" Z: "<<_ZPosition << std::endl;
+	getHitBox()->setRadius(ORANGE_RADIUS);
 }
 
 
@@ -47,13 +50,14 @@ void Orange::update(double time)
 	DynamicObject::update(time);
 	if (deltaZ <= -3) {
 		_spawn_time -= time;
-		std::cout << _spawn_time << std::endl;
+		//std::cout << _spawn_time << std::endl;
 		if (_spawn_time <= 0) {
 			deltaX = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 			deltaY = (((double)rand() / (RAND_MAX)) * 5.8) - 2.8;
 			deltaZ = 5;
 			setSpeed(0.5 + (double)rand() / (RAND_MAX));
 			setPosition(deltaX, deltaY, deltaZ);
+			getHitBox()->setPosition(deltaX, deltaY, deltaZ);
 		}
 	}
 	else if (deltaZ > 3.2) {
@@ -80,6 +84,8 @@ void Orange::update(double time)
 		setSpeed(getSpeed() + 0.01);
 	//std::cout << deltaZ << std::endl;
 	setPosition(deltaX, deltaY, deltaZ);
+	getHitBox()->setPosition(deltaX, deltaY, deltaZ);
+	std::cout << "X: " << getHitBox()->getPosition()->getX() << " Y: " << getHitBox()->getPosition()->getY() << " Z: " << getHitBox()->getPosition()->getZ() << std::endl;
 }
 
 void Orange::setAngle_z(double angle)
@@ -90,4 +96,13 @@ void Orange::setAngle_z(double angle)
 double Orange::getAngle_z()
 {
 	return _angle_z;
+}
+
+bool Orange::checkHit(GameObject* object)
+{
+	//std::cout << "xCARRO : " << object->getHitBox()->getPosition()->getX() << " yCARRO: " << object->getHitBox()->getPosition()->getY() << " zCARRO: " << object->getHitBox()->getPosition()->getZ()<< std::endl;
+
+	if (GameObject::checkHit(object))
+		object->setPosition(0, 0,3.2 );
+	return false;
 }

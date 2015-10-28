@@ -3,7 +3,7 @@
 #include "DynamicObject.h"
 
 
-DynamicObject::DynamicObject()
+DynamicObject::DynamicObject():GameObject()
 {
 	
 	_speed = 0.0;
