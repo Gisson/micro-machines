@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "DynamicObject.h"
 
+
 class Obstacle : public DynamicObject {
 public:
 	Obstacle();

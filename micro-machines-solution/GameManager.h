@@ -2,8 +2,9 @@
 #define __GAMEMANAGER_H__
 #include <memory>
 #include <vector>
-#include <GL/glut.h>
+
 #include <algorithm>
+#include <GL/glut.h>
 #include "Orange.h"
 #include "Butter.h"
 #include "Table.h"

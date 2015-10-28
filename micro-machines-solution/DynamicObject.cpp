@@ -5,9 +5,9 @@
 
 DynamicObject::DynamicObject()
 {
+	
 	_speed = 0.0;
 	_acelaration = 0.0;
-	_position = new Vector3(0.0, 0.0, 0);
 	_angle = 0;
 	_dof = Vector3();
 	//_hitBox= new Vector3(_position->getX(),_position->getY(),_position->getZ(),)
@@ -24,9 +24,6 @@ void DynamicObject::setSpeed(double speed)
 	_speed = speed;
 }
 
-void DynamicObject::setPosition(double x, double y, double z){
-	_position->set(x, y, z);
-}
 
 void DynamicObject::setAcelaration(double d)
 {
@@ -44,10 +41,6 @@ double DynamicObject::getAcelaration()
 double DynamicObject::getSpeed()
 {
 	return _speed;
-}
-
-Vector3* DynamicObject::getPosition() {
-	return _position;
 }
 
 void DynamicObject::acelarate(int amount) {

@@ -4,9 +4,9 @@
 #include "DynamicObject.h"
 #include <math.h>
 
-#define BODY_SIZE 0.4
-#define WHEEL_RADIUS 0.05
-#define LIGHT_RANGE 0.5
+#define BODY_SIZE 0.2
+#define WHEEL_RADIUS 0.03
+#define LIGHT_RANGE 0.05
 
 class Car : public DynamicObject {
 

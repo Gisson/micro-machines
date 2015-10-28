@@ -120,8 +120,13 @@ void Game_manager::update(double delta)
 	if (keyRight) {
 		_vrum->turn(-ANGLE_TURN);
 	}
-	for (GameObject* go : _elements) {
-		go->update(delta);
+	for (std::vector<GameObject*>::iterator it = _elements.begin(); it != _elements.end(); ++it) {
+		for (std::vector<GameObject*>::iterator jt = it; jt != _elements.end(); ++jt) {
+			if ((*it)->checkHit(*jt) && (*it)!=(*jt)) {
+				std::cout << "for IT: "<<(*it)->getPosition()->getX()<<" "<<(*it)->getPosition()->getY()<<" RADIUS IT: "<<(*it)->getHitBox()->getRadius()<<" FOR JT:"<<(*jt)->getPosition()->getX()<<" "<<(*jt)->getPosition()->getY() << " RADIUS JT: " << (*jt)->getHitBox()->getRadius()<< std::endl;
+			}
+		}
+		(*it)->update(delta);
 	}
 
 	glutPostRedisplay();

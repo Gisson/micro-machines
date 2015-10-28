@@ -1,7 +1,11 @@
 #include "Cheerio.h"
 
-Cheerio::Cheerio()
+Cheerio::Cheerio(double x, double y, double z)
 {
+	setPosition(x, y, z);
+	getHitBox()->setPosition(x, y, z);
+	getHitBox()->setRadius(TORUS_RADIUS_OUTER);
+	//std::cout<<"RADIUS: "<<getHitBox()->getRadius() << std::endl;
 }
 
 Cheerio::~Cheerio()
@@ -10,5 +14,11 @@ Cheerio::~Cheerio()
 
 void Cheerio::draw()
 {
-	glutSolidTorus(0.01, 0.05, 4, 20);
+	glutSolidTorus(TORUS_RADIUS_INNER, TORUS_RADIUS_OUTER, 4, 20);
 }
+
+void Cheerio::update(double time)
+{
+
+}
+

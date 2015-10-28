@@ -11,8 +11,8 @@ private:
 public:
 	HitBox(double x, double y,double z,double radius);
 	~HitBox();
-	void setPosition(Vector3* newPos);
+	void setPosition(double x, double y, double z);
 	void setRadius(double newRad);
-	Vector3 getPosition();
+	Vector3* getPosition();
 	double getRadius();
 };

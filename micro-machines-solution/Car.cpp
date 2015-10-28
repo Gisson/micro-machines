@@ -4,6 +4,8 @@
 Car::Car() :DynamicObject()
 {
 		setPosition(0, 0, 3.2);
+		getHitBox()->setPosition(0, 0, 3.2);
+		getHitBox()->setRadius(BODY_SIZE*sqrt(3)/2);
 }
 
 void Car::update(double time) {

@@ -10,10 +10,9 @@
 class DynamicObject : public GameObject {
 
 private:
-	Vector3 *_position,_dof;
+	Vector3 _dof;
 	double _acelaration , _speed,_angle;
 	bool _is_acelarating;
-	HitBox *_hitBox;
 	
 
 public:
@@ -21,8 +20,6 @@ public:
 	void update(double);
 	void setAcelaration(double);
 	void setSpeed(double);
-	void setPosition(double, double, double);
-	Vector3* getPosition();
 	double getAcelaration();
 	double getSpeed();
 	void acelarate(int);

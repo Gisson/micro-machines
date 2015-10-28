@@ -10,9 +10,9 @@ HitBox::~HitBox()
 {
 }
 
-void HitBox::setPosition(Vector3* newPos)
+void HitBox::setPosition(double x, double y, double z)
 {
-	_position = newPos;
+	_position = new Vector3(x, y, z);
 }
 
 void HitBox::setRadius(double newRad)
@@ -20,9 +20,9 @@ void HitBox::setRadius(double newRad)
 	_radius = newRad;
 }
 
-Vector3 HitBox::getPosition()
+Vector3* HitBox::getPosition()
 {
-	return Vector3();
+	return _position;
 }
 
 double HitBox::getRadius()
