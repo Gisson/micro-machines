@@ -11,6 +11,7 @@ class Obstacle : public DynamicObject {
 public:
 	Obstacle();
 	~Obstacle();
+	bool checkHit(GameObject*) override;
 };
 
 #endif

@@ -11,7 +11,6 @@ public:
 	Cheerio(double,double,double);
 	~Cheerio();
 	void draw();
-	void update(double time);
 };
 
 #endif

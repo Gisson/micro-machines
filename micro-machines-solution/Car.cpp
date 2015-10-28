@@ -9,13 +9,30 @@ Car::Car() :DynamicObject()
 }
 
 void Car::update(double time) {
-	float deltaX, deltaY, deltaZ;
-	deltaX = getPosition()->getX();
-	deltaY = getPosition()->getY();
-	deltaZ = getPosition()->getZ();
-	time = time / 1000;
 
-	DynamicObject::update(time);
+	time = time / 1000;
+	double deltaX = (getPosition()->getX() + cos(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time);
+	double deltaY = (getPosition()->getY() + sin(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time);
+	double deltaZ = getPosition()->getZ();
+	setSpeed(getSpeed() + getAcelaration()*time);
+	if (deltaX + BODY_SIZE > 3 || deltaX - BODY_SIZE < -3 || deltaY + BODY_SIZE > 3 || deltaY - BODY_SIZE < -3) {
+		if (deltaX + BODY_SIZE > 3) {
+			deltaX = 3 - BODY_SIZE;
+		}
+		if (deltaX - BODY_SIZE < -3) {
+			deltaX = -3 + BODY_SIZE;
+		}
+		if (deltaY + BODY_SIZE > 3) {
+			deltaY = 3 - BODY_SIZE;
+		}
+		if (deltaY - BODY_SIZE < -3) {
+			deltaY = -3 + BODY_SIZE;
+		}
+		setPosition(deltaX, deltaY, deltaZ);
+		getHitBox()->setPosition(deltaX, deltaY, deltaZ);
+	}
+	else
+		DynamicObject::update(time);
 	if (DynamicObject::getSpeed() > 5)
 		setSpeed(5);
 	else if (DynamicObject::getSpeed() < -5)
@@ -24,23 +41,10 @@ void Car::update(double time) {
 	{
 		setSpeed(getSpeed() + DynamicObject::getAcelaration()*time);
 	}
-	deltaX = (deltaX + cos(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time);
-	deltaY = (deltaY + sin(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time);
-	if (deltaX + BODY_SIZE > 3) {
-		deltaX = 3-BODY_SIZE;
-	}
-	if (deltaX - BODY_SIZE < -3) {
-		deltaX = -3+BODY_SIZE;
-	}
-	if (deltaY + BODY_SIZE > 3) {
-		deltaY = 3-BODY_SIZE;
-	}
-	if (deltaY - BODY_SIZE < -3) {
-		deltaY = -3+BODY_SIZE;
-	}
 
-	setPosition(deltaX, deltaY, deltaZ);
-	getHitBox()->setPosition(deltaX, deltaY, deltaZ);
+
+
+
 }
 
 

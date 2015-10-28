@@ -27,6 +27,7 @@ public:
 	void turn(double);
 	Vector3 getDof();
 	double getAngle();
+	void setAngle(double);
 	virtual bool isCar() { return false; }
 
 };

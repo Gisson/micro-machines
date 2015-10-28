@@ -5,7 +5,6 @@ Cheerio::Cheerio(double x, double y, double z)
 	setPosition(x, y, z);
 	getHitBox()->setPosition(x, y, z);
 	getHitBox()->setRadius(TORUS_RADIUS_OUTER);
-	//std::cout<<"RADIUS: "<<getHitBox()->getRadius() << std::endl;
 }
 
 Cheerio::~Cheerio()
@@ -14,11 +13,9 @@ Cheerio::~Cheerio()
 
 void Cheerio::draw()
 {
+	glPushMatrix();
+	glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ());
 	glutSolidTorus(TORUS_RADIUS_INNER, TORUS_RADIUS_OUTER, 4, 20);
-}
-
-void Cheerio::update(double time)
-{
-
+	glPopMatrix();
 }
 

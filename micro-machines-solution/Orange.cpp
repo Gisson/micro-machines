@@ -13,7 +13,7 @@ Orange::Orange():Obstacle()
 
 	setPosition(_xPosition, _yPosition, _ZPosition);
 	getHitBox()->setPosition(_xPosition, _yPosition, _ZPosition);
-	std::cout <<"INITIAL X: " <<_xPosition<<" Y: "<<_yPosition<<" Z: "<<_ZPosition << std::endl;
+	//std::cout <<"INITIAL X: " <<_xPosition<<" Y: "<<_yPosition<<" Z: "<<_ZPosition << std::endl;
 	getHitBox()->setRadius(ORANGE_RADIUS);
 }
 
@@ -66,15 +66,15 @@ void Orange::update(double time)
 
 	if (deltaX > 3) {
 		deltaZ -=0.1;
-		deltaX = 50;
+		deltaX = 500;
 	}
 	if (deltaX < -3) {
 		deltaZ -= 0.1;
-		deltaX = -50;
+		deltaX = -500;
 	}
 	if (deltaY > 3) {
 		deltaZ -= 0.1;
-		deltaY = 50;
+		deltaY = 500;
 
 	}
 	if (deltaY < -3) {
@@ -85,7 +85,7 @@ void Orange::update(double time)
 	//std::cout << deltaZ << std::endl;
 	setPosition(deltaX, deltaY, deltaZ);
 	getHitBox()->setPosition(deltaX, deltaY, deltaZ);
-	std::cout << "X: " << getHitBox()->getPosition()->getX() << " Y: " << getHitBox()->getPosition()->getY() << " Z: " << getHitBox()->getPosition()->getZ() << std::endl;
+	//std::cout << "X: " << getHitBox()->getPosition()->getX() << " Y: " << getHitBox()->getPosition()->getY() << " Z: " << getHitBox()->getPosition()->getZ() << std::endl;
 }
 
 void Orange::setAngle_z(double angle)
@@ -102,7 +102,11 @@ bool Orange::checkHit(GameObject* object)
 {
 	//std::cout << "xCARRO : " << object->getHitBox()->getPosition()->getX() << " yCARRO: " << object->getHitBox()->getPosition()->getY() << " zCARRO: " << object->getHitBox()->getPosition()->getZ()<< std::endl;
 
-	if (GameObject::checkHit(object))
-		object->setPosition(0, 0,3.2 );
+	if (GameObject::checkHit(object)) {
+		object->setPosition(0, 0, 3.2);
+		((DynamicObject*)object)->setSpeed(0);
+		((DynamicObject*)object)->setAcelaration(0);
+	}
+
 	return false;
 }

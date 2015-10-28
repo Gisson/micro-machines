@@ -16,7 +16,16 @@ DynamicObject::DynamicObject():GameObject()
 
 void DynamicObject::update(double time)
 {
+	float deltaX, deltaY, deltaZ;
+	deltaX = getPosition()->getX();
+	deltaY = getPosition()->getY();
+	deltaZ = getPosition()->getZ();
+	deltaX = (deltaX + cos(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time);
+	deltaY = (deltaY + sin(getAngle()* PI / 180)* getSpeed() * time + 0.5 * getAcelaration() * time *time);
 	
+
+	setPosition(deltaX, deltaY, deltaZ);
+	getHitBox()->setPosition(deltaX, deltaY, deltaZ);
 }
 
 void DynamicObject::setSpeed(double speed)
@@ -65,6 +74,11 @@ Vector3 DynamicObject::getDof() {
 }
 double DynamicObject::getAngle() {
 	return _angle;
+}
+
+void DynamicObject::setAngle(double angle)
+{
+	_angle = angle;
 }
 
 

@@ -24,7 +24,7 @@ void Roadside::draw()
 	glColor3f(0.4f, 0.6f, 0.0f);
 	for (int i = 0; i < CHEERIO_NR_IN; i++) {
 		glPushMatrix();
-		glTranslatef(cereals_in[i]->getPosition()->getX(), cereals_in[i]->getPosition()->getY(), cereals_in[i]->getPosition()->getZ());
+		//glTranslatef(cereals_in[i]->getPosition()->getX(), cereals_in[i]->getPosition()->getY(), cereals_in[i]->getPosition()->getZ());
 		cereals_in[i]->draw();
 
 		
@@ -35,7 +35,7 @@ void Roadside::draw()
 
 	for (int i = 0; i < CHEERIO_NR_OUT; i++) {
 		glPushMatrix();
-		glTranslatef(cereals_out[i]->getPosition()->getX(), cereals_out[i]->getPosition()->getY(), cereals_out[i]->getPosition()->getZ());
+		//glTranslatef(cereals_out[i]->getPosition()->getX(), cereals_out[i]->getPosition()->getY(), cereals_out[i]->getPosition()->getZ());
 
 		cereals_out[i]->draw();
 		glPopMatrix();
@@ -43,36 +43,27 @@ void Roadside::draw()
 	glPopMatrix();
 }
 
-void Roadside::update(double time)
-{
-
-}
-
 bool Roadside::checkHit(GameObject *object)
 {
+	bool rtn = false;
 	for (int i = 0; i < CHEERIO_NR_IN; i++) {
-		int position1 = cereals_in[i]->getHitBox()->getPosition()->norm();
-		int position2 = object->getHitBox()->getPosition()->norm();
-		position1 = position1 - position2;
-		position2 = pow(getHitBox()->getRadius() + object->getHitBox()->getRadius(), 2);
-		if (position1 <= position2) {
-			//std::cout << "TRUE" << std::endl;
-			return true;
+		cereals_in[i]->Obstacle::checkHit(object);
 
-		}
 	}
+
 	for (int i = 0; i < CHEERIO_NR_OUT; i++) {
-		int position1 = cereals_out[i]->getHitBox()->getPosition()->norm();
-		int position2 = object->getHitBox()->getPosition()->norm();
-		position1 = position1 - position2;
-		position2 = pow(getHitBox()->getRadius() + object->getHitBox()->getRadius(), 2);
-		if (position1 <= position2) {
-			//std::cout << "TRUE" << std::endl;
-			return true;
-		}
+		rtn=cereals_out[i]->Obstacle::checkHit(object);
 	}
-	//std::cout << "FALSE" << std::endl;
+	return rtn;
+}
+void Roadside::update(double time) {
 
-	return false;
+	for (int i = 0; i < CHEERIO_NR_IN; i++) {
+		cereals_in[i]->update(time);
 
+	}
+
+	for (int i = 0; i < CHEERIO_NR_OUT; i++) {
+		cereals_out[i]->update(time);
+	}
 }

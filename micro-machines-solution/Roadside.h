@@ -16,7 +16,7 @@ public:
 	Roadside();
 	~Roadside();
 	void draw();
-	void update(double time);
+	void update(double);
 	bool  checkHit(GameObject*) override;
 };
 

@@ -18,7 +18,7 @@ Game_manager::Game_manager() {
 	_table = new Table();
 	_elements.push_back(_table);
 	_road = new Roadside();
-	//_elements.push_back(_road);
+	_elements.push_back(_road);
 	for (int i = 0;i < ORANGE_NR;i++) {
 		_elements.push_back(new Orange());
 	}
@@ -111,6 +111,7 @@ void Game_manager::update(double delta)
 	if (keyUp) {
 		_vrum->acelarate(ACELARATION_NUMBER);
 	}
+
 	if (keyDown) {
 		_vrum->breakAcelaration(-ACELARATION_NUMBER);
 	}
@@ -143,7 +144,7 @@ void Game_manager::init()
 
 void Game_manager::display() {
 	glPushMatrix();
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	switch (camera_number) {
