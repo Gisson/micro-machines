@@ -22,8 +22,8 @@
 #define  VIEWPORT_Y  0.0
 #define  WINDOW_SIZE 5.0
 #define  FOVY		 45
-#define  ORANGE_NR   5
-#define  BUTTER_NR   5
+#define  ORANGE_NR   1
+#define  BUTTER_NR   1
 
 	class Game_manager {
 	private:

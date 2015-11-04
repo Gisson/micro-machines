@@ -61,11 +61,11 @@ void Orange::update(double time)
 		}
 	}
 	else if (deltaZ > TABLE_SIZE/2 +ORANGE_RADIUS) {
-		deltaZ -= 0.1;
+		deltaZ -= FALL_FACTOR;
 	}
 
 	if (deltaX > TABLE_SIZE/2) {
-		deltaZ -=0.1;
+		deltaZ -= FALL_FACTOR;
 		deltaX = OUT_OF_RANGE;
 	}
 	if (deltaX < -TABLE_SIZE/2) {

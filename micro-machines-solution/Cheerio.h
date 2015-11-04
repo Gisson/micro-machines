@@ -2,7 +2,7 @@
 #define __CHEERIOS_H__
 #include "Obstacle.h"
 
-#define TORUS_RADIUS_INNER 0.01
+#define TORUS_RADIUS_INNER 0.03
 #define TORUS_RADIUS_OUTER 0.05
 
 
