@@ -21,6 +21,17 @@ Orange::Orange():Obstacle()
 void Orange::draw()
 {
 	glPushMatrix();
+	{
+			/* comment the material*/
+	GLfloat amb[]={1.0f,0.37f,0.0215f,1.0f};
+	GLfloat diff[]={0.33f,0.61424f,0.07568f,1.0f};
+	GLfloat spec[]={0.633f,0.727811f,0.633f,1.0f};
+	GLfloat shine=76.8f;
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+	}
 	glColor3f(1.0, 0.5, 0.0);
 	glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ());
 	glRotatef(getAngle(), 0, 0, 1);

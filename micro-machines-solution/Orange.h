@@ -16,6 +16,7 @@
 class Orange : public Obstacle {
 private:
 	double _angle_z,_spawn_time;
+	GLfloat amb_orange[4], dif_orange[4], spec_orange[4], shine_orange[4];
 public:
 	Orange();
 	void draw();

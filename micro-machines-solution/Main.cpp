@@ -41,6 +41,7 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(600, 600);
 	glutInitWindowPosition(-1, -1);
 	glutCreateWindow("Micro-machines");
+	glEnable(GL_LIGHTING);
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
