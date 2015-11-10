@@ -144,7 +144,7 @@ void Game_manager::init()
 
 void Game_manager::display() {
 	glPushMatrix();
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	switch (camera_number) {

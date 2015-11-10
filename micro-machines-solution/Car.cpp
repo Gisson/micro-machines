@@ -3,7 +3,7 @@
 
 Car::Car() :DynamicObject()
 {
-		setPosition(0, 0, (TABLE_SIZE/2)+WHEEL_RADIUS);
+		setPosition(0, 0, 4);
 		getHitBox()->setPosition(0, 0, TABLE_SIZE / 2 + WHEEL_RADIUS);
 		getHitBox()->setRadius(BODY_SIZE);
 }
@@ -60,6 +60,17 @@ void Car::draw()
 		glRotatef(getAngle(), 0, 0, 1);
 
 		//---------------------WHEELS---------------------
+		{
+			/* comment the material*/
+			GLfloat amb[] = { 0.05375f,0.05f,0.06625f,1.0f };
+			GLfloat diff[] = { 0.18275f,0.17f,0.22525f,1.0f };
+			GLfloat spec[] = { 0.332741f,0.328634f,0.346435f,1.0f };
+			GLfloat shine = 38.4f;
+			glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+			glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+			glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+		}
 		glColor3f(0, 0, 0);
 
 		//--------------------FRONT WHEELS----------------
@@ -131,6 +142,17 @@ void Car::draw()
 
 			}*/glPushMatrix(); {
 				
+				{
+					/* comment the material*/
+					GLfloat amb[] = { 0.0f,1.0f,0.0f,1.0f };
+					GLfloat diff[] = { 0.4f,0.4f,0.4f,1.0f };
+					GLfloat spec[] = { 0.774597f,0.774597f,0.774597f,1.0f };
+					GLfloat shine = 76.8f;
+					glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+					glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+					glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+					glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+				}
 				glColor3f(0, 1, 0);
 				glScalef(1, 1, 0.5);
 				glutSolidCube(BODY_SIZE);

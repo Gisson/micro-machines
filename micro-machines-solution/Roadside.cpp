@@ -21,6 +21,17 @@ void Roadside::draw()
 {
 	glPushMatrix();
 	glLoadIdentity();
+	{
+		/* comment the material*/
+		GLfloat amb[] = { 0.0f,0.0f,0.0f,1.0f };
+		GLfloat diff[] = { 0.01f,0.01f,0.01f,1.0f };
+		GLfloat spec[] = { 0.5f,0.5f,0.5f,1.0f };
+		GLfloat shine = 32.0f;
+		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+		glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+	}
 	glColor3f(0.4f, 0.6f, 0.0f);
 	for (int i = 0; i < CHEERIO_NR_IN; i++) {
 		glPushMatrix();
