@@ -20,7 +20,7 @@ Roadside::~Roadside()
 void Roadside::draw()
 {
 	glPushMatrix();
-	glLoadIdentity();
+	
 	{
 		/* comment the material*/
 		GLfloat amb[] = { 0.0f,0.0f,0.0f,1.0f };

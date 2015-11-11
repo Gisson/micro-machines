@@ -3,7 +3,7 @@
 
 Car::Car() :DynamicObject()
 {
-		setPosition(0, 0, 4);
+		setPosition(0, 0, (TABLE_SIZE/2)+WHEEL_RADIUS);
 		getHitBox()->setPosition(0, 0, TABLE_SIZE / 2 + WHEEL_RADIUS);
 		getHitBox()->setRadius(BODY_SIZE);
 }
@@ -52,7 +52,7 @@ void Car::update(double time) {
 void Car::draw()
 {
 	glPushMatrix();
-	glLoadIdentity();
+	
 
 	{
 		glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ());

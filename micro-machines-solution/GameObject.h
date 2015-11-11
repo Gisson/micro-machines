@@ -12,6 +12,7 @@ private:
 
 public:
 	void setPosition(double, double, double);
+	void setPosition(Vector3*);
 	Vector3* getPosition();
 
 	GameObject();

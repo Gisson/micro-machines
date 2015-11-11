@@ -37,19 +37,13 @@ int main(int argc, char** argv) {
 
 	glutInit(&argc, argv);
 	glLoadIdentity();
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB );
 	glutInitWindowSize(600, 600);
 	glutInitWindowPosition(-1, -1);
 	glutCreateWindow("Micro-machines");
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	
-	GLfloat lightpos[] = { 5,5,5,1 };
-	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
 
-	GLfloat ambient[] = { 1,1,1,1 };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
 
 
 

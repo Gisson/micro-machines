@@ -38,6 +38,11 @@ void GameObject::setPosition(double x, double y, double z) {
 	_position->set(x, y, z);
 }
 
+void GameObject::setPosition(Vector3 * pos)
+{
+	_position = pos;
+}
+
 Vector3* GameObject::getPosition() {
 	return _position;
 }

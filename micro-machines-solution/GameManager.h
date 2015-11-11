@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <GL/glut.h>
+#include "LightSource.h"
 #include "Orange.h"
 #include "Butter.h"
 #include "Table.h"
@@ -13,6 +14,7 @@
 #include "SeeFullRoadCamera.h"
 #include "FollowCarCamera.h"
 #include "OrthogonalCamera.h"
+#include "Candle.h"
 
 
 #define  ACELARATION_NUMBER  5.0
@@ -33,7 +35,10 @@
 		OrthogonalCamera* _orthoCam;
 		FollowCarCamera *_followCar;
 		SeeFullRoadCamera *_fullRoad;
-		bool keyUp=false,keyDown=false,keyRight=false,keyLeft=false;
+		LightSource *_sun;
+		std::vector<Candle*> _candles;
+
+		bool keyUp=false,keyDown=false,keyRight=false,keyLeft=false,lightEnabled=true;
 
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;

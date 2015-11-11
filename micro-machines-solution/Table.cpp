@@ -14,7 +14,6 @@ Table::~Table()
 void Table::draw()
 {
 	glPushMatrix();
-	glNormal3f(0, 0, 1);
 	{
 		/* comment the material*/
 		GLfloat amb[] = { 0.0f,0.0f,0.52f,1.0f };
