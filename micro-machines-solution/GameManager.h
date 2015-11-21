@@ -26,6 +26,7 @@
 #define  FOVY		 45
 #define  ORANGE_NR   1
 #define  BUTTER_NR   1
+#define  CANDLE_NR	 6
 
 	class Game_manager {
 	private:
@@ -35,14 +36,14 @@
 		OrthogonalCamera* _orthoCam;
 		FollowCarCamera *_followCar;
 		SeeFullRoadCamera *_fullRoad;
-		LightSource *_sun;
-		std::vector<Candle*> _candles;
+		std::vector<LightSource*> _candles;
 
-		bool keyUp=false,keyDown=false,keyRight=false,keyLeft=false,lightEnabled=true;
+		bool keyUp = false, keyDown = false, keyRight = false, keyLeft = false, lightEnabled = true, globalOn = true, goroud = false, candlesOn = true;
 
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;
 		std::vector<GameObject*> _elements;
+		LightSource* _globalLight;
 		int camera_number = 1;
 	public:
 		Game_manager();

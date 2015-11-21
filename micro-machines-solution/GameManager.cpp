@@ -9,8 +9,8 @@ Game_manager::Game_manager() {
 	//Initializing cameras
 
 	_orthoCam = new OrthogonalCamera(-WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE);
-	_fullRoad = new SeeFullRoadCamera(FOVY,1,-3,3);
-	_followCar = new FollowCarCamera(FOVY, 1, -3, 3);
+	_fullRoad = new SeeFullRoadCamera(FOVY,1,3,-3);
+	_followCar = new FollowCarCamera(FOVY, 1, 3, -3);
 
 	//Initializing elements of the game
 
@@ -25,20 +25,34 @@ Game_manager::Game_manager() {
 	for (int i = 0; i < BUTTER_NR; i++) {
 		_elements.push_back(new Butter());
 	}
-	/*LightSource *aux = new LightSource(0);
-	glEnable(GL_LIGHT0);
-	GLfloat lightpos[] = { 5,5,5,1 };
-	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
+	for (int i = 0; i < CANDLE_NR; i++) {
+		LightSource* lh = new LightSource(i + 1);
+		lh->setPosition(-TABLE_SIZE/2+i, -TABLE_SIZE/2+i, 4, 1);
+		lh->setDirection(0, 0, -1);
+		lh->setAmbient(0.2, 0.2, 0.2, 1);
+		lh->setDiffuse(1, 1, 1, 1);
+		lh->setSpecular(1, 1, 1, 1);
+		_candles.push_back(lh);
+		_elements.push_back(new Candle(new Vector3(lh->getX(), lh->getY(), lh->getZ())));
+	}
 
-	GLfloat ambient[] = { 1,1,1,1 };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+	_vrum = new Car();
+	_elements.push_back(_vrum);
+
+	_globalLight = new LightSource(0);
+	_globalLight->setPosition (5,5,5,0 );
+	
+	_globalLight->setDirection(-1, -1, -1);
+	_globalLight->setAmbient(0.2,0.2,0.2,1 );
+	_globalLight->setDiffuse(1,1,1,1 );
+	_globalLight->setSpecular(1,1,1,1 );
 	
 
 
-
+/*
 	aux = new LightSource(_candles.size());
-	Vector3 *v1 = (new Vector3(0, 0, 3.15));
-	Vector3* v2 = (new Vector3(1, 1, 1));
+	Vector3 *v1 = new Vector3(0, 0, 3.15);
+	Vector3* v2 = new Vector3(1, 1, 1);
 	Candle *newCandle = new Candle(v1, v2);
 	
 
@@ -50,8 +64,7 @@ Game_manager::Game_manager() {
 
 	_elements.push_back(newCandle);*/
 	
-	_vrum = new Car();
-	_elements.push_back(_vrum);
+
 }
 
 
@@ -115,8 +128,20 @@ void Game_manager::keyPressed(unsigned char key, int x, int y)
 		break;
 
 	case 'l':
-		if (lightEnabled) { glDisable(GL_LIGHTING); lightEnabled = false; }
-		else { glEnable(GL_LIGHTING); lightEnabled = true; }
+		lightEnabled ? lightEnabled = false : lightEnabled = true;
+		break;
+	
+	case 'n':
+		globalOn ? globalOn = false : globalOn = true;
+		break;
+
+
+	case 'g':
+		goroud ? goroud = false: goroud = true;
+		break;
+
+	case 'c':
+		candlesOn ? candlesOn = false : candlesOn = true;
 		break;
 	default:
 		std::cout << "Not supported" << std::endl;
@@ -150,6 +175,24 @@ void Game_manager::update(double delta)
 	if (keyRight) {
 		_vrum->turn(-ANGLE_TURN);
 	}
+
+	for (std::vector<LightSource*>::iterator it = _candles.begin(); it != _candles.end(); ++it)
+		(*it)->setState(candlesOn?true:false);
+
+	if (globalOn)
+		_globalLight->setState(true);
+	else
+		_globalLight->setState(false);
+	if (lightEnabled)
+		glEnable(GL_LIGHTING);
+	else
+		glDisable(GL_LIGHTING);
+	if (goroud) {
+		glShadeModel(GL_SMOOTH);
+	}
+	else
+		glShadeModel(GL_FLAT);
+
 
 	for (std::vector<GameObject*>::iterator it = _elements.begin(); it != _elements.end(); ++it) {
 		/*for (std::vector<GameObject*>::iterator jt = it; jt != _elements.end(); ++jt) {
@@ -206,9 +249,14 @@ void Game_manager::display() {
 	else {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
-
+	
 	for (GameObject* go : _elements) {
 		go->draw();
+	}
+	if (globalOn) _globalLight->draw();
+	if (candlesOn) {
+		for (LightSource* lh : _candles)
+			lh->draw();
 	}
 	glFlush();
 	glutPostRedisplay();

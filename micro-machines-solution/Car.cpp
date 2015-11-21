@@ -59,7 +59,7 @@ void Car::draw()
 		//std::cout << getPosition()->getZ() << std::endl;
 		glRotatef(getAngle(), 0, 0, 1);
 
-		//---------------------WHEELS---------------------
+		//---------------------WHEELS---------------------  TODO: POLYGONIZAR AS RODAS
 		{
 			/* comment the material*/
 			GLfloat amb[] = { 0.05375f,0.05f,0.06625f,1.0f };
@@ -144,10 +144,10 @@ void Car::draw()
 				
 				{
 					/* comment the material*/
-					GLfloat amb[] = { 0.0f,1.0f,0.0f,1.0f };
-					GLfloat diff[] = { 0.4f,0.4f,0.4f,1.0f };
-					GLfloat spec[] = { 0.774597f,0.774597f,0.774597f,1.0f };
-					GLfloat shine = 76.8f;
+					GLfloat amb[] = { 0.13f,0.27f,0.03f,1.0f };
+					GLfloat diff[] = { 0.07568f,0.61424f,0.07568f,1.0f };
+					GLfloat spec[] = { 0.06f,0.55f,0.02f,1.0f };
+					GLfloat shine = 128.0f;
 					glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
 					glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
 					glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
@@ -155,7 +155,69 @@ void Car::draw()
 				}
 				glColor3f(0, 1, 0);
 				glScalef(1, 1, 0.5);
-				glutSolidCube(BODY_SIZE);
+				
+				//CAR BODY MALHAS
+
+				glPushMatrix(); {
+					
+					glBegin(GL_POLYGON);
+					glNormal3f(0, 0, -1);
+					glVertex3f(-BODY_SIZE / 2, -BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(-BODY_SIZE / 2, BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, -BODY_SIZE / 2, -BODY_SIZE / 2);
+
+					glEnd();
+
+					glBegin(GL_POLYGON);
+					glNormal3f(0, 0, 1);
+					glVertex3f(-BODY_SIZE / 2, -BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(-BODY_SIZE / 2, BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, -BODY_SIZE / 2, BODY_SIZE / 2);
+
+					glEnd();
+
+					glBegin(GL_POLYGON);
+					glNormal3f(1, 0, 0);
+					glVertex3f(BODY_SIZE / 2, -BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, -BODY_SIZE / 2, BODY_SIZE / 2);
+
+					glEnd();
+
+					glBegin(GL_POLYGON);
+					glNormal3f(-1, 0, 0);
+					glVertex3f(-BODY_SIZE / 2, -BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(-BODY_SIZE / 2, BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(-BODY_SIZE / 2, BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(-BODY_SIZE / 2, -BODY_SIZE / 2, BODY_SIZE / 2);
+
+					glEnd();
+
+					glBegin(GL_POLYGON);
+					glNormal3f(0, 1, 0);
+					glVertex3f(-BODY_SIZE / 2, BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(-BODY_SIZE / 2, BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, BODY_SIZE / 2, BODY_SIZE / 2);
+
+					glEnd();
+
+					glBegin(GL_POLYGON);
+					glNormal3f(0, -1, 0);
+					glVertex3f(-BODY_SIZE / 2, -BODY_SIZE / 2, -BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, -BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(-BODY_SIZE / 2, -BODY_SIZE / 2, BODY_SIZE / 2);
+					glVertex3f(BODY_SIZE / 2, -BODY_SIZE / 2, BODY_SIZE / 2);
+
+					glEnd();
+
+
+				}glPopMatrix();
+
+				//glutSolidCube(BODY_SIZE);
 			}glPopMatrix();
 
 			/*//------------ROOFTOP------------------

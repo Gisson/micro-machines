@@ -1,9 +1,9 @@
 #include "Candle.h"
 
-Candle::Candle(Vector3 * position, Vector3 * direction)
+Candle::Candle(Vector3 * position)
 {
 	setPosition(position);
-	_direction->set(direction->getX(), direction->getY(), direction->getZ());
+	//_direction->set(direction->getX(), direction->getY(), direction->getZ());
 }
 
 Candle::~Candle()
@@ -14,7 +14,7 @@ void Candle::draw()
 {
 	glPushMatrix();
 
-	glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ());
+	glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ()+0.25);
 
 	/* comment the material*/
 	GLfloat amb[] = { 0.0f,1.0f,1.0f,1.0f };

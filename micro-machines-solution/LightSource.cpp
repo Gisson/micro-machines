@@ -4,7 +4,7 @@
 #include <iostream>
 LightSource::LightSource(unsigned int number) {
 	_num = number; _state = false; _cut_off = 180;
-	_direction->set(0, 0, 0);
+	_direction=new Vector3(0, 0, 0);
 }
 LightSource::~LightSource() { }
 bool LightSource::getState() { return _state; }

@@ -6,12 +6,11 @@
 class Candle :public StaticObject {
 private:
 
-	Vector3 *_direction;
-
 public:
-	Candle(Vector3* position, Vector3* direction);
+	Candle(Vector3 * position);
 	~Candle();
 	void draw();
+
 
 
 };
