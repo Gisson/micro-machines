@@ -4,7 +4,7 @@
 #include <vector>
 
 #include <algorithm>
-#include <GL/glut.h>
+
 #include "LightSource.h"
 #include "Orange.h"
 #include "Butter.h"

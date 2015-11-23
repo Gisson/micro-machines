@@ -2,7 +2,6 @@
 #define __TABLE_H__
 
 #include "StaticObject.h"
-#include <GL/glut.h>
 
 class Table : public StaticObject {
 

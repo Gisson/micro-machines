@@ -1,7 +1,7 @@
 #pragma once
 
 #include "StaticObject.h"
-#include "Vector3.h"
+
 
 class Candle :public StaticObject {
 private:
