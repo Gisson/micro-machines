@@ -63,8 +63,7 @@ Game_manager::Game_manager() {
 	aux->setAmbient(0.2, 0.2, 0.2, 1.0);
 
 	_elements.push_back(newCandle);*/
-	
-
+	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 }
 
 
