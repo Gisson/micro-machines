@@ -1,6 +1,16 @@
 #include <iostream>
 #include "GameObject.h"
 
+void GameObject::setTexture(GLuint tex)
+{
+	_tex = tex;
+}
+
+GLuint GameObject::getTexture()
+{
+	return _tex;
+}
+
 GameObject::GameObject() {
 	_position = new Vector3(0.0, 0.0, 0);
 	_hitBox = new HitBox(0,0,0,0);

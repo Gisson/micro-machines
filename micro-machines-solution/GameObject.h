@@ -1,5 +1,6 @@
 #ifndef __GAMEOBJECT_H__
 #define __GAMEOBJECT_H__
+#include <SOIL.h>
 #include "Entity.h"
 #include "HitBox.h"
 
@@ -9,11 +10,15 @@ class GameObject :Entity {
 private:
 	Vector3 *_position;
 	HitBox *_hitBox;
+	GLuint _tex;
 
 public:
 	void setPosition(double, double, double);
 	void setPosition(Vector3*);
 	Vector3* getPosition();
+
+	void setTexture(GLuint);
+	GLuint getTexture();
 
 	GameObject();
 	virtual bool checkHit(GameObject *);

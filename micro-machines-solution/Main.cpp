@@ -1,4 +1,5 @@
 #include <iostream>
+#include <SOIL.h>
 #include "GameManager.h"
 
 
@@ -43,7 +44,6 @@ int main(int argc, char** argv) {
 	glutCreateWindow("Micro-machines");
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
-
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);

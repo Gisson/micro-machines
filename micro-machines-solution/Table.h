@@ -3,6 +3,7 @@
 
 #include "StaticObject.h"
 
+
 class Table : public StaticObject {
 
 public:
