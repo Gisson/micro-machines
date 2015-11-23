@@ -40,10 +40,10 @@ Game_manager::Game_manager() {
 	_elements.push_back(_vrum);
 
 	_globalLight = new LightSource(0);
-	_globalLight->setPosition (5,5,5,0 );
-	
-	_globalLight->setDirection(-1, -1, -1);
-	_globalLight->setAmbient(0.2,0.2,0.2,1 );
+
+	_globalLight->setPosition (1, 1,1,0);
+	_globalLight->setDirection(0,0,0);
+	_globalLight->setAmbient(0.05,0.05,0.05, 1.0 );
 	_globalLight->setDiffuse(1,1,1,1 );
 	_globalLight->setSpecular(1,1,1,1 );
 	
@@ -63,7 +63,7 @@ Game_manager::Game_manager() {
 	aux->setAmbient(0.2, 0.2, 0.2, 1.0);
 
 	_elements.push_back(newCandle);*/
-	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+//	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 }
 
 

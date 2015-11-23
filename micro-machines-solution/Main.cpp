@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
 	glutInitWindowPosition(-1, -1);
 	glutCreateWindow("Micro-machines");
 	glEnable(GL_DEPTH_TEST);
-
+	glEnable(GL_NORMALIZE);
 
 
 	glutDisplayFunc(display);
