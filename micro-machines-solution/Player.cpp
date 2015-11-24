@@ -32,13 +32,14 @@ int Player::gainLife() //not tested
 int Player::loseLife()
 {
 	if (_lifeNum == 0) _lifeNum = -1; else { _lifeNum--; _lifeCar.pop_back();  }
-	 
+	draw();
+
 	return _lifeNum;
 }
 
 bool Player::isDead()
 {
-	return _lifeNum < 0 ? true : false;
+	return _lifeNum <= 0 ? true : false;
 }
 
 void Player::draw()
