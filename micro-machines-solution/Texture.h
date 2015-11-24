@@ -1,14 +1,19 @@
-#ifndef __TEXTURE_H__
-#define __TEXTURE_H__
+
 
 #pragma once
+#include <iostream>
+#include <stdio.h>
 #include <GL/glut.h>
 
+
 class Texture {
+private:
+	GLuint _tex;
 public:
 	Texture();
 	~Texture();
-	static GLuint loadBMP_custom(const char *imagepath);
+	GLuint loadBMP_custom(const char *imagepath);
+	void setTexture(GLuint);
+	GLuint getTexture();
 };
 
-#endif

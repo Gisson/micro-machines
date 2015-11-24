@@ -1,6 +1,5 @@
 #include "Texture.h"
-#include <iostream>
-#include <stdio.h>
+
 
 Texture::Texture()
 {
@@ -19,7 +18,7 @@ GLuint Texture::loadBMP_custom(const char *imagepath) {
 
 	unsigned char *data;
 
-	FILE * file = fopen(imagepath, "r");
+	FILE * file = fopen(imagepath, "rb");
 	if (!file) {
 		printf("Image could not be opened!\n");
 		return 0;
@@ -34,10 +33,10 @@ GLuint Texture::loadBMP_custom(const char *imagepath) {
 	}
 	dataPos = *(int*)&(header[0x0A]);
 	imageSize = *(int*)&(header[0x22]);
-	width = *(int*)&(header[0x12]);
-	height = *(int*)&(header[0x16]);
+	width = *(int*)&(header[18]);
+	height = *(int*)&(header[22]);
 
-	if (imageSize == 0)    imageSize = width*height * 3; // 3 : one byte for each Red, Green and Blue component
+	imageSize = width*height * 3; // 3 : one byte for each Red, Green and Blue component
 	if (dataPos == 0)      dataPos = 54; // The BMP header is done that way
 
 										 // Create a buffer
@@ -45,11 +44,10 @@ GLuint Texture::loadBMP_custom(const char *imagepath) {
 
 	// Read the actual data from the file into the buffer
 	size_t a;
-	if ((a = fread(data, 1, imageSize, file)) != imageSize)
+	if ((a = fread(data, sizeof(unsigned char), imageSize, file)) != imageSize)
 		std::cout << a << " " << imageSize << " The Image could not be loaded" << std::endl;
 	//Everything is in memory now, the file can be closed
 	fclose(file);
-
 
 	// Create one OpenGL texture
 	GLuint textureID;
@@ -72,5 +70,16 @@ GLuint Texture::loadBMP_custom(const char *imagepath) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	std::cout << "LOAD SUCCESS" << std::endl;
+	_tex = textureID;
 	return textureID;
+}
+
+void Texture::setTexture(GLuint tex)
+{
+	_tex = tex;
+}
+
+GLuint Texture::getTexture()
+{
+	return _tex;
 }
