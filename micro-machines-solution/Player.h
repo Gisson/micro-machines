@@ -3,7 +3,7 @@
 #include "Car.h"
 #include "OrthogonalCamera.h"
 
-#define MAX_LIFES	3
+#define MAX_LIFES	5
 
 class Player {
 private:
