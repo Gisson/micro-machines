@@ -47,9 +47,6 @@ void Table::draw()
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 
-	//glColor3f(0.98f, 0.6f, 0.7f);
-	//glutSolidCube(TABLE_SIZE);
-
 	glPopMatrix();
 }
 

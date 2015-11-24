@@ -11,6 +11,8 @@ Game_manager::Game_manager() {
 
 	_elements = std::vector<GameObject*>();
 	
+	_pause = new Texture();
+	_pause->loadBMP_custom("JB.bmp");
 /*
 	aux = new LightSource(_candles.size());
 	Vector3 *v1 = new Vector3(0, 0, 3.15);
@@ -256,19 +258,6 @@ void Game_manager::clearGM()
 }
 
 void Game_manager::display() {
-	if (paused) { //TODO: Adicionar aqui o tratamento da textura do pause
-		glBegin;
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(-5 ,-5, 5);
-		glTexCoord2f(1.0f, 0.0f);
-		glVertex3f(-5, 5, 5);
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(5, 5, 5);
-		glTexCoord2f(0.0f, 1.0f);
-			glVertex3f(5, -5 , 5);
-		glEnd;
-		glutPostRedisplay(); return;
-	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
@@ -303,6 +292,30 @@ void Game_manager::display() {
 		}
 	else {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
+
+		if (paused) { //TODO: Adicionar aqui o tratamento da textura do pause
+		glPushMatrix();
+		glEnable(GL_TEXTURE_2D);
+
+		glBindTexture(GL_TEXTURE_2D, _pause->getTexture());
+		
+		glBegin(GL_QUADS);
+
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(-3, -3, 3);
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(-3, 3, 3);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(3, 3, 3);
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(3, -3, 3);
+		glEnd();
+
+		glDisable(GL_TEXTURE_2D);
+		glutPostRedisplay();
+		glPushMatrix();
+		return;
 	}
 	
 	for (GameObject* go : _elements) {
