@@ -1,18 +1,18 @@
-
-
 #pragma once
 #include <iostream>
 #include <stdio.h>
 #include <GL/glut.h>
+#include "BmpRead.h"
 
 
 class Texture {
 private:
+	BmpRead *bmp;
 	GLuint _tex;
 public:
 	Texture();
 	~Texture();
-	GLuint loadBMP_custom(const char *imagepath);
+	void loadBMP_custom(char *imagepath);
 	void setTexture(GLuint);
 	GLuint getTexture();
 };

@@ -39,6 +39,7 @@
 		SeeFullRoadCamera *_fullRoad;
 		std::vector<LightSource*> _candles;
 		Player* _player;
+		Texture* _pause;
 
 		bool keyUp , keyDown, keyRight, keyLeft, lightEnabled, globalOn, goroud, candlesOn; 
 
