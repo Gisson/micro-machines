@@ -15,6 +15,7 @@
 #include "FollowCarCamera.h"
 #include "OrthogonalCamera.h"
 #include "Candle.h"
+#include "Player.h"
 
 
 #define  ACELARATION_NUMBER  5.0
@@ -24,7 +25,7 @@
 #define  VIEWPORT_Y  0.0
 #define  WINDOW_SIZE 5.0
 #define  FOVY		 45
-#define  ORANGE_NR   1
+#define  ORANGE_NR   10
 #define  BUTTER_NR   1
 #define  CANDLE_NR	 6
 
@@ -37,8 +38,9 @@
 		FollowCarCamera *_followCar;
 		SeeFullRoadCamera *_fullRoad;
 		std::vector<LightSource*> _candles;
+		Player* _player;
 
-		bool keyUp = false, keyDown = false, keyRight = false, keyLeft = false, lightEnabled = true, globalOn = true, goroud = false, candlesOn = true;
+		bool keyUp , keyDown, keyRight, keyLeft, lightEnabled, globalOn, goroud, candlesOn; 
 
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;
@@ -59,6 +61,8 @@
 		void setTable(Table t);
 		Table getTable();
 		bool isWired();
+		void clearGM();
+		bool dead,paused;
 	};
 
 #endif

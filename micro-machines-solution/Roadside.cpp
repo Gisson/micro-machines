@@ -56,16 +56,26 @@ void Roadside::draw()
 
 bool Roadside::checkHit(GameObject *object)
 {
-	bool rtn = false;
 	for (int i = 0; i < CHEERIO_NR_IN; i++) {
 		cereals_in[i]->Obstacle::checkHit(object);
 
 	}
 
 	for (int i = 0; i < CHEERIO_NR_OUT; i++) {
-		rtn=cereals_out[i]->Obstacle::checkHit(object);
+		cereals_out[i]->Obstacle::checkHit(object);
 	}
-	return rtn;
+	return false;
+}
+void Roadside::release()
+{
+	for (int i = 0; i < CHEERIO_NR_IN; i++) {
+		free(cereals_in[i]);
+
+	}
+
+	for (int i = 0; i < CHEERIO_NR_OUT; i++) {
+		free(cereals_out[i]);
+	}
 }
 void Roadside::update(double time) {
 

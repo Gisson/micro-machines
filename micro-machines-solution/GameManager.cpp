@@ -4,51 +4,13 @@
 
 
 Game_manager::Game_manager() {
-	srand(time(NULL));
-
-	//Initializing cameras
 
 	_orthoCam = new OrthogonalCamera(-WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE, -WINDOW_SIZE, WINDOW_SIZE);
-	_fullRoad = new SeeFullRoadCamera(FOVY,1,3,-3);
-	_followCar = new FollowCarCamera(FOVY, 1, 3, -3);
-
-	//Initializing elements of the game
+	_fullRoad = new SeeFullRoadCamera(FOVY, 1, 3, -3);
+	_followCar = new FollowCarCamera(FOVY, 1, 1, -1);
 
 	_elements = std::vector<GameObject*>();
-	_table = new Table();
-	_elements.push_back(_table);
-	_road = new Roadside();
-	_elements.push_back(_road);
-	for (int i = 0;i < ORANGE_NR;i++) {
-		_elements.push_back(new Orange());
-	}
-	for (int i = 0; i < BUTTER_NR; i++) {
-		_elements.push_back(new Butter());
-	}
-	for (int i = 0; i < CANDLE_NR; i++) {
-		LightSource* lh = new LightSource(i + 1);
-		lh->setPosition(-TABLE_SIZE/2+i, -TABLE_SIZE/2+i, 4, 1);
-		lh->setDirection(0, 0, -1);
-		lh->setAmbient(0.2, 0.2, 0.2, 1);
-		lh->setDiffuse(1, 1, 1, 1);
-		lh->setSpecular(1, 1, 1, 1);
-		_candles.push_back(lh);
-		_elements.push_back(new Candle(new Vector3(lh->getX(), lh->getY(), lh->getZ())));
-	}
-
-	_vrum = new Car();
-	_elements.push_back(_vrum);
-
-	_globalLight = new LightSource(0);
-
-	_globalLight->setPosition (1, 1,1,0);
-	_globalLight->setDirection(0,0,0);
-	_globalLight->setAmbient(0.05,0.05,0.05, 1.0 );
-	_globalLight->setDiffuse(1,1,1,1 );
-	_globalLight->setSpecular(1,1,1,1 );
 	
-
-
 /*
 	aux = new LightSource(_candles.size());
 	Vector3 *v1 = new Vector3(0, 0, 3.15);
@@ -111,37 +73,56 @@ void Game_manager::specialKeyUp(int key, int x, int y)
 }
 void Game_manager::keyPressed(unsigned char key, int x, int y)
 {
+
 	switch (key) {
 	case 'a':
 		_isWired == true ? _isWired = false : _isWired = true;
+		std::cout << (_isWired ? "Wired mode on" : "Wired mode off") << std::endl;
 		break;
 	case '1':
+		std::cout << (camera_number != 1 ? "Using Camera 1" : "") << std::endl;
 		camera_number = 1;
 		break;
 	case '2':
+		std::cout << (camera_number != 2 ? "Using Camera 2" : "") << std::endl;
 		camera_number = 2;
 		_fullRoad->computeProjectionMatrix();
 		break;
 	case '3':
+		std::cout << (camera_number!=3 ? "Using Camera 3" : "") << std::endl;
 		camera_number = 3;
 		_followCar->computeProjectionMatrix();
 		break;
 
 	case 'l':
 		lightEnabled ? lightEnabled = false : lightEnabled = true;
+		std::cout << (lightEnabled ? "Light calculation on" : "Light calculation off") << std::endl;
 		break;
 	
 	case 'n':
 		globalOn ? globalOn = false : globalOn = true;
+		std::cout << (globalOn ? "Global light on" : "Global light off") << std::endl;
 		break;
 
 
 	case 'g':
 		goroud ? goroud = false: goroud = true;
+		std::cout << (goroud ? "Goroud shading on" : "Flat shading on") << std::endl;
 		break;
 
 	case 'c':
 		candlesOn ? candlesOn = false : candlesOn = true;
+		std::cout << (candlesOn ? "Candles on" : "Candles off") << std::endl;
+		break;
+	case 's':
+		std::cout << "Pause" << std::endl;
+		paused ? paused = false : paused = true;
+		break;
+	case 'r':
+		if (dead) {
+			std::cout << "Restart" << std::endl;
+			clearGM();
+		}
 		break;
 	default:
 		std::cout << "Not supported" << std::endl;
@@ -162,6 +143,7 @@ void Game_manager::idle()
 
 void Game_manager::update(double delta)
 {
+	if (paused)return;
 	if (keyUp) {
 		_vrum->acelarate(ACELARATION_NUMBER);
 	}
@@ -203,18 +185,82 @@ void Game_manager::update(double delta)
 		}*/
 		(*it)->update(delta);
 	}
+	bool didReallyHit = false;
 	for (std::vector<GameObject*>::iterator it = _elements.begin(); it != _elements.end(); ++it) {
-		(*it)->checkHit(_vrum);
-
-
+		if ((*it)->checkHit(_vrum)) didReallyHit = true; //TODO: CHANGE FUNCTION CHECKHIT IN ORANGE AND BUTTER
 	}
+	if (didReallyHit) {
+		std::cout << _player->getLifes() << std::endl;
+		if (_player->loseLife())
+			std::cout << "Lost GAME!!!" << std::endl;
+		if (_player->isDead()) dead = true;
+	}
+	
 }
 
 void Game_manager::init()
 {
+	srand(time(NULL));
+	std::cout << "Initializing.." << std::endl;
+	//Initializing bools
+	keyUp = false; keyDown = false; keyLeft = false; keyRight = false; //Keys
+	lightEnabled = true; globalOn = true; goroud = false; candlesOn = true;//lights
+	paused = false; dead = false;//control bools
+
+	
+
+	//Initializing elements of the game
+	_table = new Table();
+	_elements.push_back(_table);
+	_road = new Roadside();
+	_elements.push_back(_road);
+	for (int i = 0; i < ORANGE_NR; i++) {
+		_elements.push_back(new Orange());
+	}
+	for (int i = 0; i < BUTTER_NR; i++) {
+		_elements.push_back(new Butter());
+	}
+	for (int i = 0; i < CANDLE_NR; i++) {
+		LightSource* lh = new LightSource(i + 1);
+		lh->setPosition(-TABLE_SIZE / 2 + i, -TABLE_SIZE / 2 + i, 4, 1);
+		lh->setAmbient(0.25, 0.25, 0.25, 1);
+		lh->setDiffuse(0.25, 0.25, 0.25, 1);
+		lh->setSpecular(0.25, 0.25, 0.25, 1);
+		glLightf(GL_LIGHT0 + i, GL_CONSTANT_ATTENUATION, 0.5);
+		glLightf(GL_LIGHT0 + i, GL_LINEAR_ATTENUATION, 0);
+		glLightf(GL_LIGHT0 + i, GL_QUADRATIC_ATTENUATION, 0);
+		_candles.push_back(lh);
+		_elements.push_back(new Candle(new Vector3(lh->getX(), lh->getY(), lh->getZ())));
+	}
+
+	_vrum = new Car();
+	_elements.push_back(_vrum);
+
+	_globalLight = new LightSource(0);
+
+	_globalLight->setPosition(0, 0, 4, 0);
+	_globalLight->setSpecular(0.5, 0.5, 0.5, 1.0);
+	_globalLight->setDiffuse(0.6, 0.6, 0.6, 1.0);
+	_globalLight->setAmbient(0.8, 0.8, 0.8, 1.0);
+	_player = new Player();
+	_table->loadText();
+}
+
+void Game_manager::clearGM()
+{
+	free(_globalLight);
+	for (LightSource* lh : _candles)
+		free(lh);
+	for (GameObject* go : _elements)
+		go->release();
+	free(_player);
 }
 
 void Game_manager::display() {
+	if (paused) { //TODO: Adicionar aqui o tratamento da textura do pause
+		glutPostRedisplay(); return;
+	}
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -258,6 +304,7 @@ void Game_manager::display() {
 		for (LightSource* lh : _candles)
 			lh->draw();
 	}
+	_player->draw();
 	glFlush();
 	glutPostRedisplay();
 }
@@ -309,3 +356,5 @@ bool Game_manager::isWired()
 {
 	return _isWired;
 }
+
+

@@ -6,6 +6,13 @@ Car::Car() :DynamicObject()
 		setPosition(0, 0, (TABLE_SIZE/2)+WHEEL_RADIUS);
 		getHitBox()->setPosition(0, 0, TABLE_SIZE / 2 + WHEEL_RADIUS);
 		getHitBox()->setRadius(BODY_SIZE);
+		_frontLight = new LightSource(7);
+		_frontLight->setPosition(getPosition()->getX()+BODY_SIZE/2, getPosition()->getY() + BODY_SIZE / 2, getPosition()->getZ()+BODY_SIZE/2, 1);
+		_frontLight->setDirection(1,0,0);
+		_frontLight->setAmbient(1, 1, 1, 1);
+		_frontLight->setDiffuse(0.5, 0.5, 0.5, 1);
+		_frontLight->setSpecular(0.5, 0.5, 0.5, 1);
+		_frontLight->setState(true);
 }
 
 void Car::update(double time) {
@@ -41,6 +48,7 @@ void Car::update(double time) {
 	{
 		setSpeed(getSpeed() + DynamicObject::getAcelaration()*time);
 	}
+	_frontLight->setPosition(getPosition()->getX() + BODY_SIZE / 2, getPosition()->getY() + BODY_SIZE / 2, getPosition()->getZ() + BODY_SIZE / 2, 1);
 
 
 
