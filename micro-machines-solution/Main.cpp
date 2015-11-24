@@ -14,6 +14,9 @@ Game_manager* gm =new Game_manager();
 
 void display() {
 
+	if (gm->paused) { //TODO: Adicionar aqui o tratamento da textura do pause
+		glutPostRedisplay(); return;
+	}
 	if (gm->dead) return;
 	gm->display();
 
@@ -58,7 +61,6 @@ void restart() {
 	update(10);
 	
 }
-
 
 int main(int argc, char** argv) {
 	

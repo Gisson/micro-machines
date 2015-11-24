@@ -12,6 +12,7 @@ Player::Player()
 		_lifeCar.push_back(nc);
 	}
 	_oc = new OrthogonalCamera(-5, 5, -5, 5, -5, 5);
+
 }
 
 Player::~Player()

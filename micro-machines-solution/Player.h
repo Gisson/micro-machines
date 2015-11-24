@@ -2,6 +2,7 @@
 #include <vector>
 #include "Car.h"
 #include "OrthogonalCamera.h"
+
 #define MAX_LIFES	3
 
 class Player {
