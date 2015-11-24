@@ -2,7 +2,8 @@
 #include "stdio.h"
 Table::Table()
 {
-
+	setTexture(new Texture);
+	getTexture()->loadBMP_custom("wood.bmp");
 }
 
 Table::~Table()
@@ -28,8 +29,7 @@ void Table::draw()
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
 		glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
 	}
-
-	glBindTexture(GL_TEXTURE_2D, nuno);
+	glBindTexture(GL_TEXTURE_2D, getTexture()->getTexture());
 	glBegin(GL_QUADS);
 	glNormal3f(0, 0, 1);
 	for (int i = -TABLE_SIZE / 2; i < TABLE_SIZE / 2; i++) {
@@ -55,17 +55,4 @@ void Table::draw()
 
 void Table::update()
 {
-}
-
-void Table::loadText() {
-	bmp = new BmpRead("../wood.bmp");
-	bmp->load();
-	glGenTextures(1, &nuno);
-	glBindTexture(GL_TEXTURE_2D, nuno);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
-		bmp->getWidth(), bmp->getHeight(), 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, bmp->getData());
 }

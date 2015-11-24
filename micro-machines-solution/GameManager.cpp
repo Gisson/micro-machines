@@ -243,7 +243,6 @@ void Game_manager::init()
 	_globalLight->setDiffuse(0.6, 0.6, 0.6, 1.0);
 	_globalLight->setAmbient(0.8, 0.8, 0.8, 1.0);
 	_player = new Player();
-	_table->loadText();
 }
 
 void Game_manager::clearGM()
@@ -258,6 +257,16 @@ void Game_manager::clearGM()
 
 void Game_manager::display() {
 	if (paused) { //TODO: Adicionar aqui o tratamento da textura do pause
+		glBegin;
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(-5 ,-5, 5);
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(-5, 5, 5);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(5, 5, 5);
+		glTexCoord2f(0.0f, 1.0f);
+			glVertex3f(5, -5 , 5);
+		glEnd;
 		glutPostRedisplay(); return;
 	}
 
