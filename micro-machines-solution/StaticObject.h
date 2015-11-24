@@ -11,6 +11,7 @@ public:
 	void draw();
 	void update(double t);
 	bool isCar() { return false; }
+	bool checkHit(GameObject*) override { return false; };
 
 
 };

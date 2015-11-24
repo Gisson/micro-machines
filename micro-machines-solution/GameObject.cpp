@@ -47,6 +47,13 @@ void GameObject::update(double t)
 {
 }
 
+void GameObject::release()
+{
+	free(_position);
+	free(_hitBox);
+
+}
+
 void GameObject::setPosition(double x, double y, double z) {
 	_position->set(x, y, z);
 }

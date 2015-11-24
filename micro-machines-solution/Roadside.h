@@ -18,6 +18,7 @@ public:
 	void draw();
 	void update(double);
 	bool  checkHit(GameObject*) override;
+	void release() override;
 };
 
 #endif

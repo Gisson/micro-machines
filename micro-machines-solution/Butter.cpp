@@ -38,4 +38,10 @@ void Butter::draw()
 
 }
 
+bool Butter::checkHit(GameObject *c)
+{
+	Obstacle::checkHit(c);
+	return false;
+}
+
 

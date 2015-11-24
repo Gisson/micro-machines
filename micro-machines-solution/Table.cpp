@@ -2,7 +2,7 @@
 
 Table::Table()
 {
-	
+
 }
 
 Table::~Table()
@@ -31,6 +31,7 @@ void Table::draw()
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, getTexture()->getTexture());
 	glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
 	glTexCoord2f(0.0f, 0.0f);
 	glVertex3f(-3.0f, -3.0f, 3.0f);
 	glTexCoord2f(0.0f, 1.0f);

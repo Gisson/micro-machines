@@ -14,7 +14,7 @@ void Candle::draw()
 {
 	glPushMatrix();
 
-	glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ()+0.25);
+	glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ()+0.5);
 
 	/* comment the material*/
 	GLfloat amb[] = { 0.0f,1.0f,1.0f,1.0f };

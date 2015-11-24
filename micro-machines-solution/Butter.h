@@ -15,6 +15,7 @@ public:
 	Butter();
 	~Butter();
 	void draw();
+	bool checkHit(GameObject*)override;
 };
 
 #endif
