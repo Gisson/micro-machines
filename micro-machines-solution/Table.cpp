@@ -3,7 +3,7 @@
 Table::Table()
 {
 	setTexture(new Texture);
-	getTexture()->loadBMP_custom("wood.bmp");
+	getTexture()->loadBMP_custom(TABLE_FILENAME);
 }
 
 Table::~Table()

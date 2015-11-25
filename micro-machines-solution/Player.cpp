@@ -38,7 +38,7 @@ int Player::loseLife()
 
 bool Player::isDead()
 {
-	return _lifeNum < 0 ? true : false;
+	return _lifeNum <= 0 ? true : false;
 }
 
 void Player::draw()

@@ -28,8 +28,8 @@
 #define  ORANGE_NR   10
 #define  BUTTER_NR   1
 #define  CANDLE_NR	 6
-#define	 PAUSE_FILENAME "Pause.bmp"
-#define	 ENDGAME_FILENAME "gameover.bmp"
+#define	 PAUSE_FILENAME "../Pause.bmp"
+#define	 ENDGAME_FILENAME "../gameover.bmp"
 
 
 	class Game_manager {

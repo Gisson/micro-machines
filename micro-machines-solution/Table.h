@@ -3,7 +3,7 @@
 
 
 #include "StaticObject.h"
-
+#define TABLE_FILENAME	"../wood.bmp"
 
 class Table : public StaticObject {
 public:

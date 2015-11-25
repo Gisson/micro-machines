@@ -208,7 +208,7 @@ void Game_manager::init()
 	std::cout << "Initializing.." << std::endl;
 	//Initializing bools
 	keyUp = false; keyDown = false; keyLeft = false; keyRight = false; //Keys
-	lightEnabled = true; globalOn = true; goroud = false; candlesOn = true;//lights
+	lightEnabled = true; globalOn = true; goroud = true; candlesOn = true;//lights
 	paused = false; dead = false;//control bools
 
 	
