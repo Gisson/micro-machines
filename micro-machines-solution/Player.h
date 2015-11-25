@@ -10,6 +10,7 @@ private:
 	int _lifeNum;
 	std::vector<Car*> _lifeCar;
 	OrthogonalCamera* _oc;
+	Texture* _pause;
 public:
 	Player();
 	~Player();

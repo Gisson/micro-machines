@@ -10,9 +10,6 @@ Game_manager::Game_manager() {
 	_followCar = new FollowCarCamera(FOVY, 1, 1, -1);
 
 	_elements = std::vector<GameObject*>();
-	
-	_pause = new Texture();
-	_pause->loadBMP_custom("JB.bmp");
 /*
 	aux = new LightSource(_candles.size());
 	Vector3 *v1 = new Vector3(0, 0, 3.15);
@@ -117,7 +114,6 @@ void Game_manager::keyPressed(unsigned char key, int x, int y)
 		std::cout << (candlesOn ? "Candles on" : "Candles off") << std::endl;
 		break;
 	case 's':
-		std::cout << "Pause" << std::endl;
 		paused ? paused = false : paused = true;
 		break;
 	case 'r':
@@ -197,6 +193,12 @@ void Game_manager::update(double delta)
 			std::cout << "Lost GAME!!!" << std::endl;
 		if (_player->isDead()) dead = true;
 	}
+	else if(_vrum->getOutOfTable()){
+		_player->loseLife();
+		if (_player->isDead()) dead = true;
+		_vrum->resetCar();
+		_vrum->setOutOfTable(false);
+	}
 	
 }
 
@@ -245,6 +247,11 @@ void Game_manager::init()
 	_globalLight->setDiffuse(0.6, 0.6, 0.6, 1.0);
 	_globalLight->setAmbient(0.8, 0.8, 0.8, 1.0);
 	_player = new Player();
+
+	_pause = new Texture();
+	_pause->loadBMP_custom(PAUSE_FILENAME);
+	_endGame = new Texture();
+	_endGame->loadBMP_custom(ENDGAME_FILENAME);
 }
 
 void Game_manager::clearGM()
@@ -258,12 +265,46 @@ void Game_manager::clearGM()
 }
 
 void Game_manager::display() {
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	if (paused) { //TODO: Adicionar aqui o tratamento da textura do pause
+		glPushMatrix();
+		glDisable(GL_LIGHTING);
+		glEnable(GL_TEXTURE_2D);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(-5, 5, -5, 5, -5, 5);
+		glBindTexture(GL_TEXTURE_2D, _pause->getTexture());
+
+		glColor3f(1, 1, 1);
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+		glBegin(GL_POLYGON);
+		glNormal3f(0, 0, 1);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(4.0, 4.0, 5.0);
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(4.0, -4.0, 5.0);
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(-4.0, -4.0, 5.0);
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(-4.0f, 4.0, 5.0);
+		glEnd();
+
+		glDisable(GL_TEXTURE_2D);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glFinish();
+		glutPostRedisplay();
+		return;
+	}
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+
 	switch (camera_number) {
 	case 1:
 		_orthoCam->computeProjectionMatrix();
@@ -285,8 +326,8 @@ void Game_manager::display() {
 
 	}
 	glMatrixMode(GL_MODELVIEW);
-	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
+	/*///////////////////////////////OBJECT DRAWING AREA\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 	if (!_isWired) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		}
@@ -294,30 +335,6 @@ void Game_manager::display() {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
-		if (paused) { //TODO: Adicionar aqui o tratamento da textura do pause
-		glPushMatrix();
-		glEnable(GL_TEXTURE_2D);
-
-		glBindTexture(GL_TEXTURE_2D, _pause->getTexture());
-		
-		glBegin(GL_QUADS);
-
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(-3, -3, 3);
-		glTexCoord2f(1.0f, 0.0f);
-		glVertex3f(-3, 3, 3);
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(3, 3, 3);
-		glTexCoord2f(0.0f, 1.0f);
-		glVertex3f(3, -3, 3);
-		glEnd();
-
-		glDisable(GL_TEXTURE_2D);
-		glutPostRedisplay();
-		glPushMatrix();
-		return;
-	}
-	
 	for (GameObject* go : _elements) {
 		go->draw();
 	}
@@ -358,12 +375,6 @@ void Game_manager::reshape(GLsizei w, GLsizei h) {
 
 		
 	}
-
-	
-	
-
-	
-
 }
 
 
@@ -379,4 +390,12 @@ bool Game_manager::isWired()
 	return _isWired;
 }
 
+Texture * Game_manager::getpauseTexture()
+{
+	return _pause;
+}
 
+Texture * Game_manager::getEndGameTexture()
+{
+	return _endGame;
+}

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Orange.h"
-
+#include "Car.h"
 Orange::Orange():Obstacle()
 {
 	double _xPosition, _yPosition , _ZPosition;
@@ -113,9 +113,7 @@ bool Orange::checkHit(GameObject* object)
 {
 	//std::cout << "xCARRO : " << object->getHitBox()->getPosition()->getX() << " yCARRO: " << object->getHitBox()->getPosition()->getY() << " zCARRO: " << object->getHitBox()->getPosition()->getZ()<< std::endl;
 	if (GameObject::checkHit(object)) {
-		object->setPosition(0, 0, TABLE_SIZE/2+ORANGE_RADIUS);
-		((DynamicObject*)object)->setSpeed(0);
-		((DynamicObject*)object)->setAcelaration(0);
+		((Car*)object)->resetCar();
 		return true;
 	}
 

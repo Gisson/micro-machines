@@ -14,10 +14,41 @@ Game_manager* gm =new Game_manager();
 
 void display() {
 
-	if (gm->paused) { //TODO: Adicionar aqui o tratamento da textura do pause
-		glutPostRedisplay(); return;
+	if (gm->dead) {
+
+		glPushMatrix();
+		glDisable(GL_LIGHTING);
+		glEnable(GL_TEXTURE_2D);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(-5, 5, -5, 5, -5, 5);
+		glBindTexture(GL_TEXTURE_2D, gm->getEndGameTexture()->getTexture());
+
+		glColor3f(1, 1, 1);
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+		glBegin(GL_POLYGON);
+		glNormal3f(0, 0, 1);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(4.0, 4.0, 5.0);
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(4.0, -4.0, 5.0);
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(-4.0, -4.0, 5.0);
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(-4.0f, 4.0, 5.0);
+		glEnd();
+		
+		glDisable(GL_TEXTURE_2D);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glFinish();
+		glutPostRedisplay();
+		return;
 	}
-	if (gm->dead) return;
 	gm->display();
 
 }

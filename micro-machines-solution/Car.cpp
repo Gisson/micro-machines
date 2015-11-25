@@ -3,6 +3,7 @@
 
 Car::Car() :DynamicObject()
 {
+	_outofTable = false;
 		setPosition(0, 0, (TABLE_SIZE/2)+WHEEL_RADIUS);
 		getHitBox()->setPosition(0, 0, TABLE_SIZE / 2 + WHEEL_RADIUS);
 		getHitBox()->setRadius(BODY_SIZE);
@@ -23,20 +24,7 @@ void Car::update(double time) {
 	double deltaZ = getPosition()->getZ();
 	setSpeed(getSpeed() + getAcelaration()*time);
 	if (deltaX + BODY_SIZE > TABLE_SIZE/2 || deltaX - BODY_SIZE < -TABLE_SIZE/2 || deltaY + BODY_SIZE > TABLE_SIZE/2 || deltaY - BODY_SIZE < -TABLE_SIZE/2) {
-		if (deltaX + BODY_SIZE > TABLE_SIZE/2) {
-			deltaX = TABLE_SIZE/2 - BODY_SIZE;
-		}
-		if (deltaX - BODY_SIZE < -TABLE_SIZE/2) {
-			deltaX = -TABLE_SIZE/2 + BODY_SIZE;
-		}
-		if (deltaY + BODY_SIZE > TABLE_SIZE/2) {
-			deltaY = TABLE_SIZE/2 - BODY_SIZE;
-		}
-		if (deltaY - BODY_SIZE < -TABLE_SIZE/2) {
-			deltaY = -TABLE_SIZE/2 + BODY_SIZE;
-		}
-		setPosition(deltaX, deltaY, deltaZ);
-		getHitBox()->setPosition(deltaX, deltaY, deltaZ);
+		_outofTable = true;
 	}
 	else
 		DynamicObject::update(time);
@@ -248,4 +236,20 @@ void Car::draw()
 bool Car::checkHit(GameObject *)
 {
 	return false;
+}
+
+void Car::resetCar() {
+	setPosition(0, 0, TABLE_SIZE / 2);
+	setSpeed(0);
+	setAcelaration(0);
+}
+
+void Car::setOutOfTable(bool isIt)
+{
+	_outofTable = isIt;
+}
+
+bool Car::getOutOfTable()
+{
+	return _outofTable;
 }

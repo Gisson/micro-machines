@@ -14,6 +14,7 @@ class Car : public DynamicObject {
 
 private:
 	LightSource* _frontLight;
+	bool _outofTable;
 
 
 public:
@@ -22,6 +23,9 @@ public:
 	void draw();
 	bool checkHit(GameObject*) override;
 	bool isCar() override { return true; }
+	void resetCar();
+	void setOutOfTable(bool);
+	bool getOutOfTable();
 };
 
 #endif

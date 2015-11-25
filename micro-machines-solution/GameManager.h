@@ -28,6 +28,9 @@
 #define  ORANGE_NR   10
 #define  BUTTER_NR   1
 #define  CANDLE_NR	 6
+#define	 PAUSE_FILENAME "Pause.bmp"
+#define	 ENDGAME_FILENAME "gameover.bmp"
+
 
 	class Game_manager {
 	private:
@@ -39,7 +42,7 @@
 		SeeFullRoadCamera *_fullRoad;
 		std::vector<LightSource*> _candles;
 		Player* _player;
-		Texture* _pause;
+		Texture* _pause,*_endGame;
 
 		bool keyUp , keyDown, keyRight, keyLeft, lightEnabled, globalOn, goroud, candlesOn; 
 
@@ -64,6 +67,9 @@
 		bool isWired();
 		void clearGM();
 		bool dead,paused;
+		Texture* getpauseTexture();
+		Texture* getEndGameTexture();
+
 	};
 
 #endif
