@@ -122,6 +122,8 @@ void Game_manager::keyPressed(unsigned char key, int x, int y)
 			clearGM();
 		}
 		break;
+	case 'h':
+		_vrum->turnLight();
 	default:
 		std::cout << "Not supported" << std::endl;
 		break;
@@ -208,7 +210,7 @@ void Game_manager::init()
 	std::cout << "Initializing.." << std::endl;
 	//Initializing bools
 	keyUp = false; keyDown = false; keyLeft = false; keyRight = false; //Keys
-	lightEnabled = true; globalOn = true; goroud = true; candlesOn = true;//lights
+	lightEnabled = true; globalOn = true; goroud = true; candlesOn = true; _carLightOn = false;//lights
 	paused = false; dead = false;//control bools
 
 	
@@ -227,18 +229,22 @@ void Game_manager::init()
 	for (int i = 0; i < CANDLE_NR; i++) {
 		LightSource* lh = new LightSource(i + 1);
 		lh->setPosition(-TABLE_SIZE / 2 + i, -TABLE_SIZE / 2 + i, 4, 1);
-		lh->setAmbient(0.25, 0.25, 0.25, 1);
-		lh->setDiffuse(0.25, 0.25, 0.25, 1);
-		lh->setSpecular(0.25, 0.25, 0.25, 1);
-		glLightf(GL_LIGHT0 + i, GL_CONSTANT_ATTENUATION, 0.5);
+		lh->setDirection(-0, 0, -1);
+		lh->setAmbient(0.5, 0.5, 0.5, 1);
+		lh->setDiffuse(0.5, 0.5, 0.5, 1);
+		lh->setSpecular(0.5, 0.5, 0.5, 1);
+		lh->setCutOff(-90);
+		//lh->setExponent(2);
+		glLightf(GL_LIGHT0 + i, GL_CONSTANT_ATTENUATION, 0);
 		glLightf(GL_LIGHT0 + i, GL_LINEAR_ATTENUATION, 0);
-		glLightf(GL_LIGHT0 + i, GL_QUADRATIC_ATTENUATION, 0);
+		glLightf(GL_LIGHT0 + i, GL_QUADRATIC_ATTENUATION, 1);
 		_candles.push_back(lh);
 		_elements.push_back(new Candle(new Vector3(lh->getX(), lh->getY(), lh->getZ())));
 	}
 
 	_vrum = new Car();
 	_elements.push_back(_vrum);
+	
 
 	_globalLight = new LightSource(0);
 
@@ -338,6 +344,7 @@ void Game_manager::display() {
 	for (GameObject* go : _elements) {
 		go->draw();
 	}
+
 	if (globalOn) _globalLight->draw();
 	if (candlesOn) {
 		for (LightSource* lh : _candles)

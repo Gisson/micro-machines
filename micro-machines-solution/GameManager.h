@@ -44,7 +44,7 @@
 		Player* _player;
 		Texture* _pause,*_endGame;
 
-		bool keyUp , keyDown, keyRight, keyLeft, lightEnabled, globalOn, goroud, candlesOn; 
+		bool keyUp , keyDown, keyRight, keyLeft, lightEnabled, globalOn, goroud, candlesOn,_carLightOn; 
 
 		bool _isWired = false;
 		int oldTimeSinceStart = 0;

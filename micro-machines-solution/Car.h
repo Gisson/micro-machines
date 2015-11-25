@@ -26,6 +26,8 @@ public:
 	void resetCar();
 	void setOutOfTable(bool);
 	bool getOutOfTable();
+	void initLight();
+	void turnLight();
 };
 
 #endif

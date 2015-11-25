@@ -7,13 +7,7 @@ Car::Car() :DynamicObject()
 		setPosition(0, 0, (TABLE_SIZE/2)+WHEEL_RADIUS);
 		getHitBox()->setPosition(0, 0, TABLE_SIZE / 2 + WHEEL_RADIUS);
 		getHitBox()->setRadius(BODY_SIZE);
-		_frontLight = new LightSource(7);
-		_frontLight->setPosition(getPosition()->getX()+BODY_SIZE/2, getPosition()->getY() + BODY_SIZE / 2, getPosition()->getZ()+BODY_SIZE/2, 1);
-		_frontLight->setDirection(1,0,0);
-		_frontLight->setAmbient(1, 1, 1, 1);
-		_frontLight->setDiffuse(0.5, 0.5, 0.5, 1);
-		_frontLight->setSpecular(0.5, 0.5, 0.5, 1);
-		_frontLight->setState(true);
+		initLight();
 }
 
 void Car::update(double time) {
@@ -25,6 +19,7 @@ void Car::update(double time) {
 	setSpeed(getSpeed() + getAcelaration()*time);
 	if (deltaX + BODY_SIZE > TABLE_SIZE/2 || deltaX - BODY_SIZE < -TABLE_SIZE/2 || deltaY + BODY_SIZE > TABLE_SIZE/2 || deltaY - BODY_SIZE < -TABLE_SIZE/2) {
 		_outofTable = true;
+
 	}
 	else
 		DynamicObject::update(time);
@@ -37,10 +32,10 @@ void Car::update(double time) {
 		setSpeed(getSpeed() + DynamicObject::getAcelaration()*time);
 	}
 	_frontLight->setPosition(getPosition()->getX() + BODY_SIZE / 2, getPosition()->getY() + BODY_SIZE / 2, getPosition()->getZ() + BODY_SIZE / 2, 1);
+	_frontLight->setDirection(cos(getAngle()* PI / 180), sin(getAngle()* PI / 180), 0);
+	std::cout << "x: " << _frontLight->getX() << " y: " << _frontLight->getY() << " z: " << _frontLight->getZ() << std::endl;
 
-
-
-
+	_frontLight->draw();
 }
 
 
@@ -49,10 +44,9 @@ void Car::draw()
 {
 	glPushMatrix();
 	
-
+	
 	{
 		glTranslatef(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ());
-		//std::cout << getPosition()->getZ() << std::endl;
 		glRotatef(getAngle(), 0, 0, 1);
 
 		//---------------------WHEELS---------------------  TODO: POLYGONIZAR AS RODAS
@@ -252,4 +246,18 @@ void Car::setOutOfTable(bool isIt)
 bool Car::getOutOfTable()
 {
 	return _outofTable;
+}
+void  Car::initLight() {
+	_frontLight = new LightSource(7);
+	_frontLight->setPosition(getPosition()->getX(), getPosition()->getY(), getPosition()->getZ(), 1);
+	_frontLight->setDirection(1,0, 0);
+	_frontLight->setAmbient(1, 1, 1, 1);
+	_frontLight->setDiffuse(1.0, 1.0, 1.0, 1.0);
+	_frontLight->setSpecular(1, 1, 1, 1);
+	_frontLight->setCutOff(45);
+	_frontLight->setExponent(2);
+	_frontLight->setState(true);
+}
+void Car::turnLight() {
+	_frontLight->getState() ? _frontLight->setState(false) : _frontLight->setState(true);
 }
